@@ -4,16 +4,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shopping Cart</title>
+  <link rel="icon" href="/Images/Nivea_logo.svg" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
   <link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
     rel="stylesheet"/>
+    
 </head>
 <body>
-  <div class="main-container">
-    <div class="cart">
-      <i class="ri-shopping-cart-2-line"></i>
+    <div class="f-cart">
+      <div class="search-container">
+        <input type="text" placeholder="Search products..." id="search-bar" />
+        <!-- <button>Search</button> -->
+      </div>
+      
+      <div class="cart-icon">
+        <button><span><i class="ri-shopping-cart-2-line"></i></span> Cart (<span id="cart-count">0</span>)</button>
+        <button id="checkout-btn">Checkout</button>
+        <div id="checkout-modal" class="modal hidden">
+          <div class="modal-content">
+            <h2>Cart Summary</h2>
+            <div id="cart-items-list" class="scrollable">
+
+            </div>
+            <div class="cart-summary">
+              <p><strong>Total Cost:</strong> GHC<span id="total-cost">0.00</span></p>
+              <div class="check">
+              <button id="close-modal">Close</button>
+              <button>Proceed</button>
+              </div>
+            </div>            
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  
+    <div class="container">
+      <div class="top-deals">
+        <h1>Top Deals</h1>
+        <a href="#">See All<span><i class="ri-arrow-drop-right-fill">
+        </i></span>
+        </a>
+      </div>
+      <div class="products-container">
+      </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
 </body>
 </html>

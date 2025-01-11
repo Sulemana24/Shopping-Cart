@@ -9,25 +9,35 @@
   <link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
     rel="stylesheet"/>
-    
     <script type="module" src="main.js" defer></script>
 </head>
 <body>
-  <div class="cart">
-    <div class="logo">
-      <img src="/Images/Nivea_logo.svg" alt="logo">
-    </div>
     <div class="f-cart">
       <div class="search-container">
         <input type="text" placeholder="Search products..." />
         <button>Search</button>
       </div>
-        <div class="cart-icon">
-        <p><span><i class="ri-shopping-cart-2-line"></i></span> Cart</p>
+      
+      <div class="cart-icon">
+        <button><span><i class="ri-shopping-cart-2-line"></i></span> Cart (<span id="cart-count">0</span>)</button>
+        <button id="checkout-btn">Checkout</button>
+        <div id="checkout-modal" class="modal hidden">
+          <div class="modal-content">
+            <h2>Cart Summary</h2>
+            <div id="cart-items-list" class="scrollable">
+
+            </div>
+            <div class="cart-summary">
+              <p><strong>Total Cost:</strong> GHC<span id="total-cost">0.00</span></p>
+              <div class="check">
+              <button id="close-modal">Close</button>
+              <button>Proceed</button>
+              </div>
+            </div>            
+          </div>
         </div>
+      </div>
     </div>
-    </div>
-  </div>
   
     <div class="container">
       <div class="top-deals">

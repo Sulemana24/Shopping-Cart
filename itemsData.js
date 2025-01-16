@@ -13,7 +13,7 @@ export const items = [
 
   {
     id: 2,
-    title: "Nivea Aloe Hydration Body Lotion",
+    title: "Nivea Aloe Hydration Body",
     description: {
       short: "Refresh and hydrate your skin with...",
       long: "Refresh and hydrate your skin with the Nivea Aloe Hydration Body Lotion",
@@ -25,7 +25,7 @@ export const items = [
 
   {
     id: 3,
-    title: "Nivea Men Maximum Body Lotion",
+    title: "Nivea Men Maximum Body",
     description: {
       short: "Indulge your skin with the rich care of...",
       long: "Indulge your skin with the rich care of Nivea Cocoa Butter Body Lotion"
@@ -37,7 +37,7 @@ export const items = [
 
   {
     id: 4,
-    title: "Nivea Even & Radiant Body Lotion",
+    title: "Nivea Even & Radiant",
     description: {
       short: "Achieve an even-toned, radiant complexion with...",
       long: "Achieve an even-toned, radiant complexion with the Nivea Even & Radiant Body Lotion"
@@ -49,7 +49,7 @@ export const items = [
 
   {
     id: 5,
-    title: "Nivea Cocoa Butter Body Lotion",
+    title: "Nivea Cocoa Butter",
     description: {
       short: "Specifically formulated for...",
       long: "Specifically formulated for men, the Nivea Men Maximum Hydration Body Lotion provides long-lasting moisture"
@@ -61,7 +61,7 @@ export const items = [
 
   {
     id: 6,
-    title: "Nivea Cocoa Butter Body Lotion",
+    title: "Nivea Cocoa Butter",
     description: {
       short: "Specifically formulated for...",
       long: "Specifically formulated for men, the Nivea Men Maximum Hydration Body Lotion provides long-lasting moisture"
@@ -73,7 +73,7 @@ export const items = [
 
   {
     id: 7,
-    title: "Nivea Nourishing Body Lotion",
+    title: "Nivea Nourishing Body",
     description:{
       short: "Pamper your skin with the Nivea...",
       long: "Pamper your skin with the Nivea Nourishing Body Lotion, enriched with almond oil to provide",
@@ -85,7 +85,7 @@ export const items = [
 
   {
     id: 8,
-    title: "Nivea Aloe Hydration Body Lotion",
+    title: "Nivea Aloe Hydration",
     description: {
       short: "Refresh and hydrate your skin with...",
       long: "Refresh and hydrate your skin with the Nivea Aloe Hydration Body Lotion",
@@ -97,7 +97,7 @@ export const items = [
 
   {
     id: 9,
-    title: "Nivea Men Maximum Body Lotion",
+    title: "Nivea Men Maximum",
     description: {
       short: "Indulge your skin with the rich care of...",
       long: "Indulge your skin with the rich care of Nivea Cocoa Butter Body Lotion"
@@ -109,7 +109,7 @@ export const items = [
   
   {
     id: 10,
-    title: "Nivea Even & Radiant Body Lotion",
+    title: "Nivea Even & Radiant",
     description: {
       short: "Achieve an even-toned, radiant complexion with...",
       long: "Achieve an even-toned, radiant complexion with the Nivea Even & Radiant Body Lotion"

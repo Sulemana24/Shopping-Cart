@@ -92,27 +92,33 @@ function showPopup(product) {
         <p>${product.description.long}</p>
         <p class="price">GHC ${product.price}</p>
         <p class="stars"><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-half-line"></i></p>
-        <button id="cart-button"><i class="ri-shopping-cart-2-line"></i>Add to Cart</button>
+        <div class="btns"><button id="cart-button"><i class="ri-shopping-cart-2-line"></i> Add to Cart</button>
+        </div>
       </div>
-  `
-  const cartButton = document.getElementById("cart-button");
-cartButton.addEventListener("click", () => {
-  addToCart(product.id); 
-  modal.classList.remove('visible');
-  modal.classList.add('hidden');
-});
-document.getElementById("close-summary").addEventListener("click", () => {
-  modal.classList.remove('visible');
-  modal.classList.add('hidden');
-});
+      </div>
+  `;
 
   modal.classList.remove('hidden');
   modal.classList.add('visible');
+
+  document.getElementById("close-modal").addEventListener("click", () => {
+    modal.classList.remove("visible");
+    modal.classList.add("hidden");
+    location.reload();
+  });
+
+  const cartButton = document.getElementById("cart-button");
+  cartButton.addEventListener("click", () => {
+  addToCart(product.id); 
+  saveToCart();
+  modal.classList.remove('visible');
+  modal.classList.add('hidden');  
+  location.reload();
+});
+
+updateCart();
+
 };
-
-
-
-
 
 // Search products
 function searchProducts(searchTerm) {

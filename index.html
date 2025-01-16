@@ -9,46 +9,67 @@
   <link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
     rel="stylesheet"/>
-    
 </head>
 <body>
-    <div class="f-cart">
-      <div class="search-container">
-        <input type="text" placeholder="Search products..." />
-        <button>Search</button>
+  <main role="main">
+    
+    <div class="f-cart" role="region" aria-labelledby="cart-section">
+      <div class="logo">
+        <img src="/Images/Nivea_logo.svg" alt="Nivea Logo"/>
       </div>
-      
-      <div class="cart-icon">
-        <button><span><i class="ri-shopping-cart-2-line"></i></span> Cart (<span id="cart-count">0</span>)</button>
-        <button id="checkout-btn">Checkout</button>
-        <div id="checkout-modal" class="modal hidden">
+      <div class="search-container" role="search">
+        <input 
+          type="text" 
+          placeholder="Search products..." 
+          id="search-bar" 
+          aria-label="Search for products"
+        />
+      </div>
+      <div class="cart-icon" role="region" aria-labelledby="cart-controls">
+        <button id="cart-btn" aria-controls="checkout-modal" aria-expanded="false">
+          <span><i class="ri-shopping-cart-2-line"></i></span> 
+          Cart (<span id="cart-count" aria-live="polite">0</span>)
+        </button>
+      </div>
+    </div>
+        <div id="checkout-modal" class="modal hidden" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
           <div class="modal-content">
-            <h2>Cart Summary</h2>
-            <div id="cart-items-list" class="scrollable">
-
-            </div>
+            <h2 id="modal-title">Cart Summary</h2>
+            <div id="cart-items-list" class="scrollable" role="list" aria-label="List of items in your cart"></div>
             <div class="cart-summary">
-              <p><strong>Total Cost:</strong> GHC<span id="total-cost">0.00</span></p>
+              <p><strong>Subtotal:</strong> GHC<span id="subtotal">0.00</span></p>
               <div class="check">
-              <button id="close-modal">Close</button>
-              <button>Proceed</button>
+                <button id="close-modal" aria-label="Close cart summary modal">Close</button>
+                <button id="checkout-btn">Checkout (GHC <span id="checkout-total" aria-live="polite">0.00</span>)</button>
               </div>
             </div>            
           </div>
         </div>
-      </div>
+
+    <div id="checkout-modal" class="modal hidden">
+      
     </div>
-  
-    <div class="container">
+    
+
+    <div class="container" role="region" aria-labelledby="top-deals">
       <div class="top-deals">
-        <h1>Top Deals</h1>
-        <a href="#">See All<span><i class="ri-arrow-drop-right-fill">
-        </i></span>
+        <h1 id="top-deals">Top Deals</h1>
+        <a href="#" aria-label="See all top deals">
+          See All<span><i class="ri-arrow-drop-right-fill"></i></span>
         </a>
       </div>
-      <div class="products-container">
-      </div>
+      <div class="products-container" role="list" aria-label="Available products"></div>
     </div>
-    <script type="module" src="./JS/main.js"></script>
+
+
+    <div id="order-summary">
+      
+    </div>
+    
+    <div id="toast-container" aria-live="polite" aria-atomic="true" role="status"></div>
+
+  </main>
+
+  <script type="module" src="/JS/main.js"></script>
 </body>
 </html>

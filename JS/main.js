@@ -1,16 +1,41 @@
+/* ---------------------------- Importing Data ---------------------------- */
 import { items } from './itemsData.js';
 
+/* ---------------------- Initializing Variables ---------------------- */
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-
 const cartContainer = document.getElementById("cart-items-list");
-const totalCostElement = document.getElementById("total-cost");
+const totalCostElement = document.getElementById("subtotal");
 const modal = document.getElementById('checkout-modal');
+const productContainer = document.querySelector(".products-container");
+const searchBar = document.getElementById("search-bar");
 
-document.addEventListener("DOMContentLoaded", () => {
-  const productContainer = document.querySelector(".products-container");
+/* ----------------------- Utility Functions ----------------------- */
+// Save cart to local storage
+function saveToCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
 
-  items.forEach((item) => {
+// Update cart count
+function updateCart() {
+  const cartElement = document.getElementById("cart-count");
+  cartElement.textContent = cart.length;
+}
+
+// Calculate and display subtotal
+function subTotal() {
+  const checkoutTotal = document.getElementById("checkout-total");
+  const totalCost = cart.reduce((sum, product) => sum + (product.price * product.quantity), 0);
+  totalCostElement.textContent = totalCost.toFixed(2);
+  checkoutTotal.textContent = totalCost.toFixed(2);
+}
+
+/* ---------------------- Product Display Functions ---------------------- */
+// Display products dynamically
+function displayProducts(productList) {
+  productContainer.innerHTML = "";
+
+  productList.forEach((item) => {
     const productCard = document.createElement("div");
     productCard.classList.add("product");
 
@@ -23,12 +48,16 @@ document.addEventListener("DOMContentLoaded", () => {
     details.classList.add("details");
 
     const productTitle = document.createElement("a");
-    productTitle.href = "#";
     productTitle.textContent = item.title;
+    productTitle.href = "#";
+    productTitle.addEventListener("click", (e) => {
+      e.preventDefault(); 
+      showPopup(item); 
+    });
     details.appendChild(productTitle);
 
     const productDetails = document.createElement("p");
-    productDetails.textContent = item.description;
+    productDetails.textContent = item.description.short;
     details.appendChild(productDetails);
 
     const productPrice = document.createElement("p");
@@ -41,113 +70,206 @@ document.addEventListener("DOMContentLoaded", () => {
     productButton.addEventListener("click", () => {
       addToCart(item.id);
     });
-    
-    details.appendChild(productButton);
 
+    details.appendChild(productButton);
     productCard.appendChild(details);
     productContainer.appendChild(productCard);
   });
+}
 
-  updateCart();
+// Function to show the popup
+function showPopup(product) {
+  
+  modal.innerHTML = `
+    <div class="modal-content">
+      <button id="close-modal" class="close-btn">
+        <i class="ri-close-line"></i>
+      </button>
+      <img src="${product.img}" alt="${product.title}">
+      <div class="product-details">
+        <h2>${product.title}</h2>
+        <p>${product.description.long}</p>
+        <p class="price">GHC ${product.price}</p>
+        <p class="stars">
+          <i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+          <i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+          <i class="ri-star-half-line"></i>
+        </p>
+        <button id="cart-button" class="btns"><i class="ri-shopping-cart-2-line"></i> Add to Cart</button>
+      </div>
+    </div>
+  `;
 
-});
+  // Make the modal visible
+  modal.classList.remove("hidden");
+  modal.classList.add("visible");
 
-function saveToCart() {
-  localStorage.setItem("cart", JSON.stringify(cart));
-};
+  // Handle closing the modal
+  document.getElementById("close-modal").addEventListener("click", () => {
+    modal.classList.remove("visible");
+    modal.classList.add("hidden");
+  });
 
-function updateCart() {
-  const cartElement = document.getElementById("cart-count");
-  cartElement.textContent = cart.length;
-};
+  // Handle adding the product to the cart
+  const cartButton = document.getElementById("cart-button");
+  cartButton.addEventListener("click", () => {
+    addToCart(product.id);
+    modal.classList.remove("visible");
+    modal.classList.add("hidden");
+  });
+}
 
+
+// Search products
+function searchProducts(searchTerm) {
+  const filteredProducts = items.filter((item) =>
+    item.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  displayProducts(filteredProducts);
+}
+
+/* ---------------------- Cart Management Functions ---------------------- */
+// Add product to cart
 function addToCart(itemId) {
   const item = items.find((item) => item.id === itemId);
   const itemExists = cart.find((cartItem) => cartItem.id === itemId);
+
   if (itemExists) {
+    showToast(`${item.title} is already added to cart`);
     itemExists.quantity += 1;
   } else {
     cart.push({ ...item, quantity: 1 });
-    alert(`${item.title} added successfully to cart`);
-  } 
-  
+    showToast(`${item.title} added successfully to cart`);
+    saveToCart();
+  }
+
   updateCart();
-};
+}
 
-function totalCost() {
-  const totalCost = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
-  totalCostElement.textContent = totalCost.toFixed(2);
-
-};
-
-
-
+// Render cart items
 function renderCart() {
   cartContainer.innerHTML = "";
 
   cart.forEach((product, index) => {
-
     const productDiv = document.createElement("div");
     productDiv.classList.add("products");
-
     productDiv.innerHTML = `
-    <span>${product.title} - GHC ${product.price} </span>
-    <span>QTY ${product.quantity}</span>
-    <div class= "buttons">
-    <button class="add-btn">+</button>
-    <button class="subtract-btn">-</button>
-    <button class="delete-btn" data-id="${product.id}"><i class="ri-delete-bin-6-line"></i></button>
-    </div>
+      <span>${product.title} - GHC ${product.price} </span>
+      <span>QTY ${product.quantity}</span>
+      <div class="buttons">
+        <button class="add-btn">+</button>
+        <button class="subtract-btn">-</button>
+        <button class="delete-btn" data-id="${product.id}">
+          <i class="ri-delete-bin-6-line"></i>
+        </button>
+      </div>
     `;
 
     productDiv.querySelector(".add-btn").addEventListener("click", () => updateQuantity(index, "add"));
     productDiv.querySelector(".subtract-btn").addEventListener("click", () => updateQuantity(index, "subtract"));
     productDiv.querySelector(".delete-btn").addEventListener("click", () => {
-      cart.splice(index, 1);
-      updateCart();
-      saveToCart();
-      renderCart();
+        cart.splice(index, 1);
+        updateCart();
+        saveToCart();
+        renderCart();
       
     });
 
     cartContainer.appendChild(productDiv);
-    
   });
 
   modal.classList.remove('hidden');
   modal.classList.add('visible');
-  totalCost();
-  
-};
+  subTotal();
+}
 
+// Update quantity of items in cart
 function updateQuantity(index, action) {
   const product = cart[index];
   if (action === "add") {
-    product.quantity = isNaN(product.quantity) ? 1 : product.quantity + 1;
-  } else if (action === "subtract" && product.quantity > 0) {
-    product.quantity = isNaN(product.quantity) ? 0 : product.quantity - 1;
-  }
-  
-  if (product.quantity === 0) {
-    cart.splice(index, 1);
+    product.quantity += 1;
+  } else if (action === "subtract" && product.quantity > 1) {
+    product.quantity -= 1;
   }
   saveToCart();
   renderCart();
 }
 
+/* ---------------------- Checkout Functions ---------------------- */
+// Show order summary
+function orderSummary() {
+  const totalItems = cart.reduce((sum, product) => sum + product.quantity, 0);
+  const totalCost = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
 
+  modal.innerHTML = `
+    <div class="order-summary">
+      <button id="close-summary" class="close-btn">
+        <i class="ri-close-line"></i>
+      </button>
+      <h3>Order Summary</h3>
+      <p>Total Items: ${totalItems}</p>
+      <p>Total Cost: GHC ${totalCost.toFixed(2)}</p>
+      <p>Tax (10%): GHC ${(totalCost * 0.10).toFixed(2)}</p>
+      <p><strong>Grand Total: GHC ${(totalCost * 1.10).toFixed(2)}</strong></p>
+      <button id="confirm-checkout" class="checkout-btn">Proceed to Payment</button>
+    </div>
+  `;
 
-document.getElementById('checkout-btn').addEventListener('click', () => {
-  if (cart.length === 0) {
-    alert('Your cart is empty!');
-    return;
-  }
-  renderCart();
+  modal.classList.remove('hidden');
+  modal.classList.add('visible');
+
+  document.getElementById("close-summary").addEventListener("click", () => {
+    modal.classList.remove('visible');
+    modal.classList.add('hidden');
+    location.reload();
+  });
+
+  document.getElementById("confirm-checkout").addEventListener("click", () => {
+    showToast("Proceeding to payment...");
+    modal.classList.remove('visible');
+    modal.classList.add('hidden');
+    location.reload();
+  });
+}
+
+/* ---------------------- Event Listeners ---------------------- */
+document.addEventListener("DOMContentLoaded", () => {
+  displayProducts(items);
+  updateCart();
 });
 
-document.getElementById('close-modal').addEventListener('click', () => {
+searchBar.addEventListener("input", (e) => {
+  const searchTerm = e.target.value;
+  searchProducts(searchTerm);
+});
+
+document.getElementById("cart-btn").addEventListener("click", renderCart);
+
+document.getElementById('checkout-btn').addEventListener("click", () => {
+  if (cart.length === 0) {
+    showToast('Your cart is empty!');
+  } else {
+    orderSummary();
+  }
+});
+
+document.getElementById('close-modal').addEventListener("click", () => {
   modal.classList.remove('visible');
   modal.classList.add('hidden');
 });
 
+/* ---------------------------- Toast Notification ---------------------------- */
+// Show toast notification
+function showToast(message) {
+  const toastContainer = document.getElementById("toast-container");
+  const toast = document.createElement("div");
+  toast.classList.add("toast");
+  toast.textContent = message;
 
+  toastContainer.appendChild(toast);
+
+  // Remove toast after 3 seconds
+  setTimeout(() => {
+    toast.remove();
+  }, 3000);
+}

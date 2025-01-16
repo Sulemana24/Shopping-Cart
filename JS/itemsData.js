@@ -2,7 +2,10 @@ export const items = [
   {
     id: 1,
     title: "Nivea Nourishing Body Lotion",
-    description: "Pamper your skin with the Nivea Nourishing Body Lotion, enriched with almond oil to provide....",
+    description: {
+      short:"Pamper your skin with the Nivea Nourishing Body Lotion, enriched with almond oil to provide....",
+      long: "Pamper your skin with the Nivea Nourishing Body Lotion, enriched with almond oil to provide deep nourishment and long-lasting moisture. The fast-absorbing formula is suitable for all skin types and leaves your skin feeling soft, smooth, and hydrated.",
+    },
     price: 45.99,
     img: "/Images/Nivea Extra Whitening Body Lotion (SPF 15) Review.jpeg",
     quantity: 0,

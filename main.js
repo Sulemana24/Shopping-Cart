@@ -47,12 +47,17 @@ function displayProducts(productList) {
     const details = document.createElement("div");
     details.classList.add("details");
 
-    const productTitle = document.createElement("h3");
+    const productTitle = document.createElement("a");
     productTitle.textContent = item.title;
+    productTitle.href = "#";
+    productTitle.addEventListener("click", (e) => {
+      e.preventDefault(); 
+      showPopup(item);
+    });
     details.appendChild(productTitle);
 
     const productDetails = document.createElement("p");
-    productDetails.textContent = item.description;
+    productDetails.textContent = item.description.short;
     details.appendChild(productDetails);
 
     const productPrice = document.createElement("p");
@@ -70,7 +75,44 @@ function displayProducts(productList) {
     productCard.appendChild(details);
     productContainer.appendChild(productCard);
   });
-}
+};
+
+function showPopup(product) {
+  modal.innerHTML = `
+    <div class="modal-content">
+    <button id="close-summary" class="close-btn">
+        <i class="ri-close-line"></i>
+      </button>
+      <button id="close-modal" class="close-btn">
+        <i class="ri-close-line"></i>
+      </button>
+      <img src="${product.img}" alt="${product.title}">
+      <div class="product-details">
+        <h2>${product.title}</h2>
+        <p>${product.description.long}</p>
+        <p class="price">GHC ${product.price}</p>
+        <p class="stars"><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-half-line"></i></p>
+        <button id="cart-button"><i class="ri-shopping-cart-2-line"></i>Add to Cart</button>
+      </div>
+  `
+  const cartButton = document.getElementById("cart-button");
+cartButton.addEventListener("click", () => {
+  addToCart(product.id); 
+  modal.classList.remove('visible');
+  modal.classList.add('hidden');
+});
+document.getElementById("close-summary").addEventListener("click", () => {
+  modal.classList.remove('visible');
+  modal.classList.add('hidden');
+});
+
+  modal.classList.remove('hidden');
+  modal.classList.add('visible');
+};
+
+
+
+
 
 // Search products
 function searchProducts(searchTerm) {
@@ -101,6 +143,14 @@ function addToCart(itemId) {
 // Render cart items
 function renderCart() {
   cartContainer.innerHTML = "";
+
+  if (cart.length === 0) {
+    cartContainer.innerHTML = `
+      <p class="empty-cart-message">Your cart is currently empty. Start adding items!</p>
+    `;
+    subTotal();
+    return;
+  }
 
   cart.forEach((product, index) => {
     const productDiv = document.createElement("div");
@@ -154,7 +204,7 @@ function orderSummary() {
   const totalCost = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
 
   modal.innerHTML = `
-    <div class="order-summary">
+    <form class="order-summary">
       <button id="close-summary" class="close-btn">
         <i class="ri-close-line"></i>
       </button>
@@ -163,8 +213,23 @@ function orderSummary() {
       <p>Total Cost: GHC ${totalCost.toFixed(2)}</p>
       <p>Tax (10%): GHC ${(totalCost * 0.10).toFixed(2)}</p>
       <p><strong>Grand Total: GHC ${(totalCost * 1.10).toFixed(2)}</strong></p>
-      <button id="confirm-checkout" class="checkout-btn">Proceed to Payment</button>
-    </div>
+
+      <p>Please Select Payment Method</p>
+      <div>
+        <input type="radio" id="mobile-money" name="payment-method" value="Mobile Money" required>
+        <label for="mobile-money">Mobile Money</label>
+      </div>
+      <div>
+        <input type="radio" id="credit-card" name="payment-method" value="Credit Card">
+        <label for="credit-card">Credit Card</label>
+      </div>
+      <div>
+        <input type="radio" id="cash" name="payment-method" value="Cash">
+        <label for="cash">Cash</label>
+      </div>
+
+      <button type="submit" id="confirm-checkout" class="checkout-btn">Confirm and Pay</button>
+    </form>
   `;
 
   modal.classList.remove('hidden');
@@ -176,13 +241,23 @@ function orderSummary() {
     location.reload();
   });
 
-  document.getElementById("confirm-checkout").addEventListener("click", () => {
-    showToast("Proceeding to payment...");
+  const form = document.querySelector(".order-summary");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+
+    const cartElement = document.getElementById("cart-count");
+    cart.length = 0;
+    cartElement.textContent = cart.length;
+    alert(`Payment method selected: ${paymentMethod}\nProceeding to payment...`);
     modal.classList.remove('visible');
     modal.classList.add('hidden');
-    location.reload();
+    saveToCart();
+    
   });
 }
+
 
 /* ---------------------- Event Listeners ---------------------- */
 document.addEventListener("DOMContentLoaded", () => {
@@ -195,7 +270,13 @@ searchBar.addEventListener("input", (e) => {
   searchProducts(searchTerm);
 });
 
-document.getElementById("cart-btn").addEventListener("click", renderCart);
+document.getElementById("cart-btn").addEventListener("click", () => {
+  if (cart.length === 0) {
+    showToast('Your cart is empty!');
+  } else {
+    renderCart();
+  }
+});
 
 document.getElementById('checkout-btn').addEventListener("click", () => {
   if (cart.length === 0) {

@@ -1,72 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>Shopping Cart</title>
   <link rel="icon" href="/Images/Nivea_logo.svg" type="image/x-icon">
+
   <link rel="stylesheet" href="style.css">
   <link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-    rel="stylesheet"/>
+    rel="stylesheet"
+  />
 </head>
 <body>
+
   <main role="main">
+    
+    <!-- Cart section -->
     <div class="f-cart" role="region" aria-labelledby="cart-section">
-      <div class="search-container" role="search">
-        <input 
-          type="text" 
-          placeholder="Search products..." 
-          id="search-bar" 
-          aria-label="Search for products"
-        />
+      <div class="logo">
+        <img src="/Images/Nivea_logo.svg" alt="logo">
       </div>
+      <!-- Search bar for finding products -->
+      <div class="search-container" role="search">
+        <input type="text" placeholder="Search products..." id="search-bar" aria-label="Search for products"/>
+      </div>
+
+      <!-- Cart icon and controls -->
       <div class="cart-icon" role="region" aria-labelledby="cart-controls">
+        <!-- Button to open the cart modal -->
         <button id="cart-btn" aria-controls="checkout-modal" aria-expanded="false">
           <span><i class="ri-shopping-cart-2-line"></i></span> 
           Cart (<span id="cart-count" aria-live="polite">0</span>)
         </button>
-        
+      </div>
+    </div> 
+        <!-- Cart modal dialog -->
         <div id="checkout-modal" class="modal hidden" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
           <div class="modal-content">
             <h2 id="modal-title">Cart Summary</h2>
+
+            <!-- List of items in the cart -->
             <div id="cart-items-list" class="scrollable" role="list" aria-label="List of items in your cart"></div>
+
+            <!-- Cart summary details -->
             <div class="cart-summary">
-              <p><strong>Subtotal:</strong> GHC<span id="subtotal">0.00</span></p>
+              <p><strong>Subtotal:</strong> GHC <span id="subtotal">0.00</span></p> 
               <div class="check">
+                <!-- Button to close the cart modal -->
                 <button id="close-modal" aria-label="Close cart summary modal">Close</button>
+
+                <!-- Button to proceed to checkout -->
                 <button id="checkout-btn">Checkout (GHC <span id="checkout-total" aria-live="polite">0.00</span>)</button>
               </div>
             </div>            
           </div>
         </div>
-      </div>
-    </div>
 
-    <div id="checkout-modal" class="modal hidden">
-      
-    </div>
-    
-
+    <!-- Deals and products section -->
     <div class="container" role="region" aria-labelledby="top-deals">
       <div class="top-deals">
-        <h1 id="top-deals">Top Deals</h1>
+        <h1 id="top-deals">Top Deals</h1> 
         <a href="#" aria-label="See all top deals">
           See All<span><i class="ri-arrow-drop-right-fill"></i></span>
         </a>
       </div>
+
+      <!-- Container for displaying product items -->
       <div class="products-container" role="list" aria-label="Available products"></div>
     </div>
 
-
-    <div id="order-summary">
-      
-    </div>
+    <!-- Placeholder for order summary (to be dynamically updated) -->
+    <div id="order-summary"></div>
     
+    <!-- Toast notification container -->
     <div id="toast-container" aria-live="polite" aria-atomic="true" role="status"></div>
 
   </main>
 
+  <!-- Main JavaScript file for the app -->
   <script type="module" src="main.js"></script>
 </body>
 </html>

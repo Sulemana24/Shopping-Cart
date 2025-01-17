@@ -104,6 +104,7 @@ a:hover {
 
 .products-container {
   width: 100%;
+  margin-bottom: 2rem;
 }
 
 .product {
@@ -120,11 +121,6 @@ a:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-
-.product:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .product img {
@@ -177,10 +173,6 @@ a:hover {
   max-width: 500px;
   text-align: center;
   position: relative;
-}
-
-.modal-content .close-btn:hover {
-  background: none;
 }
 
 .modal-content h2,
@@ -285,11 +277,10 @@ a:hover {
 .order-summary {
   background: #fff;
   border-radius: 10px;
-  padding: 20px 30px;
+  padding: 30px;
   width: 100%;
   max-width: 400px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  font-family: 'Arial', sans-serif;
   position: relative;
 }
 
@@ -297,28 +288,18 @@ a:hover {
   margin-bottom: 20px;
   font-size: 1.8rem;
   text-align: center;
-  color: #333;
+  color: #222d87;
 }
 
 .order-summary p {
   font-size: 1rem;
   margin: 10px 0;
-  color: #555;
-}
-
-.order-summary strong {
-  color: #000;
-  font-weight: bold;
-}
-
-.order-summary h4 {
-  margin-top: 20px;
-  font-size: 1.2rem;
   color: #333;
 }
 
-.order-summary div {
-  margin: 10px 0;
+.order-summary strong {
+  color: #222d87;
+  font-weight: 700;
 }
 
 .order-summary input[type="radio"] {
@@ -329,6 +310,19 @@ a:hover {
   font-size: 1rem;
   color: #555;
   cursor: pointer;
+}
+
+.close-btn{
+  position: absolute;
+  top: -5px;
+  right: -30px;
+  color: #222d87;
+  background: none;
+  font-size: 1.5rem;
+}
+
+.close-btn:hover {
+  background: none;
 }
 
 .checkout-btn {
@@ -489,18 +483,30 @@ a:hover {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 10px;
     padding: 0 20px;
+    margin-top: 1rem;
   }
 
   .product {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     text-align: center;
     padding: 20px;
+  }
+
+  .product button{
+    margin-left: 2rem;
+  }
+
+  .product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
 
   .products img {
     height: auto;
     object-fit: contain;
   }
+
+  .top-deals{
+    padding: 2rem;
+  }
+
 }

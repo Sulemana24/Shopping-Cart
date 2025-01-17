@@ -108,6 +108,7 @@ function showPopup(product) {
   document.getElementById("close-modal").addEventListener("click", () => {
     modal.classList.remove("visible");
     modal.classList.add("hidden");
+    location.reload();
   });
 
   // Handle adding the product to the cart
@@ -116,15 +117,20 @@ function showPopup(product) {
     addToCart(product.id);
     modal.classList.remove("visible");
     modal.classList.add("hidden");
+    renderCart();
+    updateCart();
   });
-}
-
+};
 
 // Search products
 function searchProducts(searchTerm) {
-  const filteredProducts = items.filter((item) =>
-    item.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const trimmedSearchTerm = searchTerm.trim();
+
+  const filteredProducts = trimmedSearchTerm
+    ? items.filter((item) =>
+        item.title.toLowerCase().includes(trimmedSearchTerm.toLowerCase())
+      )
+    : items;
   displayProducts(filteredProducts);
 }
 

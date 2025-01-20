@@ -16,12 +16,10 @@
 
   <main role="main">
     
-    <!-- Cart section -->
     <div class="f-cart" role="region" aria-labelledby="cart-section">
       <div class="logo">
-        <img src="/Images/Nivea_logo.svg" alt="logo">
+        <img src="/Images/Nivea_logo.svg" alt="Nivea Logo"/>
       </div>
-      <!-- Search bar for finding products -->
       <div class="search-container" role="search">
         <input type="text" placeholder="Search products..." id="search-bar" aria-label="Search for products"/>
       </div>
@@ -34,8 +32,7 @@
           Cart (<span id="cart-count" aria-live="polite">0</span>)
         </button>
       </div>
-    </div> 
-        <!-- Cart modal dialog -->
+    </div>
         <div id="checkout-modal" class="modal hidden" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
           <div class="modal-content">
             <h2 id="modal-title">Cart Summary</h2>
@@ -56,8 +53,8 @@
             </div>            
           </div>
         </div>
-
-    <!-- Deals and products section -->
+    <div id="checkout-modal" class="modal hidden">
+    </div>
     <div class="container" role="region" aria-labelledby="top-deals">
       <div class="top-deals">
         <h1 id="top-deals">Top Deals</h1> 
@@ -69,16 +66,10 @@
       <!-- Container for displaying product items -->
       <div class="products-container" role="list" aria-label="Available products"></div>
     </div>
-
-    <!-- Placeholder for order summary-->
-    <div id="order-summary"></div>
-    
-    <!-- Toast notification container -->
+    <div id="order-summary">
+    </div>
     <div id="toast-container" aria-live="polite" aria-atomic="true" role="status"></div>
-
   </main>
-
-  <!-- Main JavaScript file for the app -->
-  <script type="module" src="main.js"></script>
+  <script type="module" src="/JS/main.js"></script>
 </body>
 </html>

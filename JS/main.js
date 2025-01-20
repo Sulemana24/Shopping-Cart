@@ -52,7 +52,7 @@ function displayProducts(productList) {
     productTitle.href = "#";
     productTitle.addEventListener("click", (e) => {
       e.preventDefault(); 
-      showPopup(item);
+      showPopup(item); 
     });
     details.appendChild(productTitle);
 
@@ -75,14 +75,13 @@ function displayProducts(productList) {
     productCard.appendChild(details);
     productContainer.appendChild(productCard);
   });
-};
+}
 
+// Function to show the popup
 function showPopup(product) {
+  
   modal.innerHTML = `
     <div class="modal-content">
-    <button id="close-summary" class="close-btn">
-        <i class="ri-close-line"></i>
-      </button>
       <button id="close-modal" class="close-btn">
         <i class="ri-close-line"></i>
       </button>
@@ -91,40 +90,47 @@ function showPopup(product) {
         <h2>${product.title}</h2>
         <p>${product.description.long}</p>
         <p class="price">GHC ${product.price}</p>
-        <p class="stars"><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-half-line"></i></p>
-        <div class="btns"><button id="cart-button"><i class="ri-shopping-cart-2-line"></i> Add to Cart</button>
-        </div>
+        <p class="stars">
+          <i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+          <i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+          <i class="ri-star-half-line"></i>
+        </p>
+        <button id="cart-button" class="btns"><i class="ri-shopping-cart-2-line"></i> Add to Cart</button>
       </div>
-      </div>
+    </div>
   `;
 
-  modal.classList.remove('hidden');
-  modal.classList.add('visible');
+  // Make the modal visible
+  modal.classList.remove("hidden");
+  modal.classList.add("visible");
 
+  // Handle closing the modal
   document.getElementById("close-modal").addEventListener("click", () => {
     modal.classList.remove("visible");
     modal.classList.add("hidden");
     location.reload();
   });
 
+  // Handle adding the product to the cart
   const cartButton = document.getElementById("cart-button");
   cartButton.addEventListener("click", () => {
-  addToCart(product.id); 
-  saveToCart();
-  modal.classList.remove('visible');
-  modal.classList.add('hidden');  
-  location.reload();
-});
-
-updateCart();
-
+    addToCart(product.id);
+    modal.classList.remove("visible");
+    modal.classList.add("hidden");
+    renderCart();
+    updateCart();
+  });
 };
 
 // Search products
 function searchProducts(searchTerm) {
-  const filteredProducts = items.filter((item) =>
-    item.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const trimmedSearchTerm = searchTerm.trim();
+
+  const filteredProducts = trimmedSearchTerm
+    ? items.filter((item) =>
+        item.title.toLowerCase().includes(trimmedSearchTerm.toLowerCase())
+      )
+    : items;
   displayProducts(filteredProducts);
 }
 
@@ -149,14 +155,6 @@ function addToCart(itemId) {
 // Render cart items
 function renderCart() {
   cartContainer.innerHTML = "";
-
-  if (cart.length === 0) {
-    cartContainer.innerHTML = `
-      <p class="empty-cart-message">Your cart is currently empty. Start adding items!</p>
-    `;
-    subTotal();
-    return;
-  }
 
   cart.forEach((product, index) => {
     const productDiv = document.createElement("div");
@@ -210,7 +208,7 @@ function orderSummary() {
   const totalCost = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
 
   modal.innerHTML = `
-    <form class="order-summary">
+    <div class="order-summary">
       <button id="close-summary" class="close-btn">
         <i class="ri-close-line"></i>
       </button>
@@ -219,23 +217,8 @@ function orderSummary() {
       <p>Total Cost: GHC ${totalCost.toFixed(2)}</p>
       <p>Tax (10%): GHC ${(totalCost * 0.10).toFixed(2)}</p>
       <p><strong>Grand Total: GHC ${(totalCost * 1.10).toFixed(2)}</strong></p>
-
-      <p>Please Select Payment Method</p>
-      <div>
-        <input type="radio" id="mobile-money" name="payment-method" value="Mobile Money" required>
-        <label for="mobile-money">Mobile Money</label>
-      </div>
-      <div>
-        <input type="radio" id="credit-card" name="payment-method" value="Credit Card">
-        <label for="credit-card">Credit Card</label>
-      </div>
-      <div>
-        <input type="radio" id="cash" name="payment-method" value="Cash">
-        <label for="cash">Cash</label>
-      </div>
-
-      <button type="submit" id="confirm-checkout" class="checkout-btn">Confirm and Pay</button>
-    </form>
+      <button id="confirm-checkout" class="checkout-btn">Proceed to Payment</button>
+    </div>
   `;
 
   modal.classList.remove('hidden');
@@ -247,23 +230,13 @@ function orderSummary() {
     location.reload();
   });
 
-  const form = document.querySelector(".order-summary");
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
-
-    const cartElement = document.getElementById("cart-count");
-    cart.length = 0;
-    cartElement.textContent = cart.length;
-    alert(`Payment method selected: ${paymentMethod}\nProceeding to payment...`);
+  document.getElementById("confirm-checkout").addEventListener("click", () => {
+    showToast("Proceeding to payment...");
     modal.classList.remove('visible');
     modal.classList.add('hidden');
-    saveToCart();
-    
+    location.reload();
   });
 }
-
 
 /* ---------------------- Event Listeners ---------------------- */
 document.addEventListener("DOMContentLoaded", () => {
@@ -276,13 +249,7 @@ searchBar.addEventListener("input", (e) => {
   searchProducts(searchTerm);
 });
 
-document.getElementById("cart-btn").addEventListener("click", () => {
-  if (cart.length === 0) {
-    showToast('Your cart is empty!');
-  } else {
-    renderCart();
-  }
-});
+document.getElementById("cart-btn").addEventListener("click", renderCart);
 
 document.getElementById('checkout-btn').addEventListener("click", () => {
   if (cart.length === 0) {

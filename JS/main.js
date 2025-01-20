@@ -47,12 +47,17 @@ function displayProducts(productList) {
     const details = document.createElement("div");
     details.classList.add("details");
 
-    const productTitle = document.createElement("h3");
+    const productTitle = document.createElement("a");
     productTitle.textContent = item.title;
+    productTitle.href = "#";
+    productTitle.addEventListener("click", (e) => {
+      e.preventDefault(); 
+      showPopup(item); 
+    });
     details.appendChild(productTitle);
 
     const productDetails = document.createElement("p");
-    productDetails.textContent = item.description;
+    productDetails.textContent = item.description.short;
     details.appendChild(productDetails);
 
     const productPrice = document.createElement("p");
@@ -72,11 +77,60 @@ function displayProducts(productList) {
   });
 }
 
+// Function to show the popup
+function showPopup(product) {
+  
+  modal.innerHTML = `
+    <div class="modal-content">
+      <button id="close-modal" class="close-btn">
+        <i class="ri-close-line"></i>
+      </button>
+      <img src="${product.img}" alt="${product.title}">
+      <div class="product-details">
+        <h2>${product.title}</h2>
+        <p>${product.description.long}</p>
+        <p class="price">GHC ${product.price}</p>
+        <p class="stars">
+          <i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+          <i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+          <i class="ri-star-half-line"></i>
+        </p>
+        <button id="cart-button" class="btns"><i class="ri-shopping-cart-2-line"></i> Add to Cart</button>
+      </div>
+    </div>
+  `;
+
+  // Make the modal visible
+  modal.classList.remove("hidden");
+  modal.classList.add("visible");
+
+  // Handle closing the modal
+  document.getElementById("close-modal").addEventListener("click", () => {
+    modal.classList.remove("visible");
+    modal.classList.add("hidden");
+    location.reload();
+  });
+
+  // Handle adding the product to the cart
+  const cartButton = document.getElementById("cart-button");
+  cartButton.addEventListener("click", () => {
+    addToCart(product.id);
+    modal.classList.remove("visible");
+    modal.classList.add("hidden");
+    renderCart();
+    updateCart();
+  });
+};
+
 // Search products
 function searchProducts(searchTerm) {
-  const filteredProducts = items.filter((item) =>
-    item.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const trimmedSearchTerm = searchTerm.trim();
+
+  const filteredProducts = trimmedSearchTerm
+    ? items.filter((item) =>
+        item.title.toLowerCase().includes(trimmedSearchTerm.toLowerCase())
+      )
+    : items;
   displayProducts(filteredProducts);
 }
 

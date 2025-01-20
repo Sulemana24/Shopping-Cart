@@ -229,13 +229,10 @@ a:hover {
   border: 1px solid #ddd;
   border-radius: 5px;
   width: 100;
-<<<<<<< HEAD
 }
 
 .products span {
   color: #222d87;
-=======
->>>>>>> 63f6ebc6fb8892d8ae228b68e060b1fb11405969
 }
 
 .products span:nth-child(2) {
@@ -515,14 +512,8 @@ a:hover {
   }
 }
 
-<<<<<<< HEAD
 @media (min-width: 768px) {
   .search-container input[type="text"] {
-=======
-
-@media (min-width: 768px){
-  .search-container input[type="text"]{
->>>>>>> 63f6ebc6fb8892d8ae228b68e060b1fb11405969
     width: 200px;
     margin: 0;
   }
@@ -590,18 +581,7 @@ a:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
 
-<<<<<<< HEAD
   .products img {
-=======
-  .main-container{
-    margin-top: 2rem;
-  }
-
-  .product img {
-    width: 100px;
-    height: 100px;
-    max-width: 200px; 
->>>>>>> 63f6ebc6fb8892d8ae228b68e060b1fb11405969
     height: auto;
     object-fit: contain;
   }

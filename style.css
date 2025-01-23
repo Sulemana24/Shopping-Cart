@@ -19,7 +19,7 @@ body {
   width: 100%;
   top: 0;
   z-index: 9;
-  margin: 2rem 1rem 0;
+  margin: 2rem auto 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,6 +32,7 @@ body {
   cursor: pointer;
   max-width: 50px;
   margin: 0 2rem 0 1rem;
+  width: 40%;
 }
 
 .logo img {
@@ -41,18 +42,42 @@ body {
 
 .search-container {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
-  width: 60%;
+  
+  margin: 20px;
 }
 
+.input-wrapper {
+  
+  width: 100%;
+  max-width: 400px;
+}
+
+
 .search-container input[type="text"] {
-  width: 100px;
-  padding: 10px;
+  width: 80%;
+  padding: 10px 35px 10px 10px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
   outline: none;
+  position: relative;
+}
+
+.clear-icon {
+  position: absolute;
+  left: 275px;
+  top: 73px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #888;
+  cursor: pointer;
+  display: none;
+}
+
+.clear-icon:hover {
+  color: #000; 
 }
 
 button {
@@ -76,7 +101,7 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 0 2rem 1rem;
+  padding: 2rem;
   border-radius: 5px 5px 0 0;
   background-color: #E2F5FF;
   margin: 0 auto;
@@ -104,13 +129,13 @@ a:hover {
 
 .products-container {
   width: 100%;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;
   display: grid;
   grid-template-columns: repeat(1fr);
 }
 
 .product {
-  padding: 2rem 0 0;
+  padding: 2rem auto 0;
   overflow: hidden;
   border-radius: 8px;
   cursor: pointer;
@@ -123,6 +148,10 @@ a:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.product button{
+  margin-bottom: 2rem;
 }
 
 .product img {
@@ -248,9 +277,14 @@ a:hover {
 
 .check {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin: 1rem 0;
+  margin: 1rem;
+}
+
+.check #checkout-btn{
+  width: 100%;
+  margin-left: 2rem;
 }
 
 .scrollable {
@@ -384,13 +418,6 @@ a:hover {
   to {
     opacity: 0;
   }
-}
-
-.empty-cart-message {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #666;
-  margin-top: 20px;
 }
 
 /* Order Summary Styles */
@@ -560,18 +587,21 @@ a:hover {
 }
 
 @media (min-width: 768px) {
-  .search-container input[type="text"] {
-    width: 200px;
-    margin: 0;
+
+  .products-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+    margin-top: 1rem;
   }
 
-  .search-container {
+ /*  .search-container {
     margin: 0;
-  }
+  } */
 
   .f-cart {
-    display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
   }
 
@@ -587,11 +617,6 @@ a:hover {
 
   .logo {
     width: 100%;
-  }
-
-  .search-container input[type="text"] {
-    width: 300px;
-    margin: 0;
   }
 
   .search-container {
@@ -633,14 +658,16 @@ a:hover {
 
 }
 
-@media (min-width: 768px) {
-  .products-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    padding: 0 2rem;
-    margin-top: 1rem;
+@media (min-width: 560px) {
+  .search-container input[type="text"] {
+    width: 80%;
   }
 }
+
+@media (min-width: 768px) {
+ 
+}
+
 @media (min-width: 1200px) {
   .products-container {
     grid-template-columns: repeat(3, 1fr);

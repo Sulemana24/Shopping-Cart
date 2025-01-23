@@ -21,7 +21,11 @@
         <img src="/Images/Nivea_logo.svg" alt="Nivea Logo"/>
       </div>
       <div class="search-container" role="search">
-        <input type="text" placeholder="Search products..." id="search-bar" aria-label="Search for products"/>
+        <div class="input-wrapper">
+          <input 
+            type="text" placeholder="Search products..." id="search-bar" aria-label="Search for products" />
+          <span id="clear-btn" class="clear-icon" aria-label="Clear search">&times;</span>
+        </div>
       </div>
 
       <!-- Cart icon and controls -->
@@ -44,9 +48,6 @@
             <div class="cart-summary">
               <p><strong>Subtotal:</strong> GHC <span id="subtotal">0.00</span></p> 
               <div class="check">
-                <!-- Button to close the cart modal -->
-                <button id="close-modal" aria-label="Close cart summary modal">Close</button>
-
                 <!-- Button to proceed to checkout -->
                 <button id="checkout-btn">Checkout (GHC <span id="checkout-total" aria-live="polite">0.00</span>)</button>
               </div>

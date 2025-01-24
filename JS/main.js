@@ -50,6 +50,7 @@ function displayProducts(productList) {
     details.classList.add("details");
 
     const productTitle = document.createElement("a");
+    productTitle.title = `View details for ${item.title}`;
     productTitle.textContent = item.title;
     productTitle.href = "#";
     productTitle.id = `product-title-${item.id}`;
@@ -249,7 +250,6 @@ function orderSummary() {
   });
 
   document.getElementById("confirm-checkout").addEventListener("click", () => {
-    showToast("Proceeding to payment...");
     cart = []; 
     saveToCart();
     updateCart();

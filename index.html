@@ -1,76 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>Shopping Cart</title>
-  <link rel="icon" href="/Images/Nivea_logo.svg" type="image/x-icon">
-
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hayate Cosmetics</title>
+  <link rel="icon" href="./Images/comlogo.png" type="image/x-icon">
   <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-    rel="stylesheet"
-  />
+  href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+  rel="stylesheet"/>
+  <link rel="stylesheet" href="/Styles/styles.css">
 </head>
 <body>
 
-  <main role="main">
+  <header>
+    <!--Navbar Section-->
+<nav>
+    <div class="nav-header">
+        <div class="nav-logo">
+          <img src="/Images/NEW LOGO.png" alt="logo" class="logo">
+            <!--  <a href="#" class="logo">Pulse<span>bit</span></a> -->
+        </div>
+        <div class="nav-menu-btn" id="menu-line">
+            <i class="ri-menu-line" aria-label="menu-line"></i>
+        </div>
+    </div>
+        <ul class="nav-links" id="ul-links" aria-label="nav-links">
+            <li><a href="#" aria-label="home">Home</a></li>
+            <li><a href="#about-company" aria-label="about">About</a>
+            </li>
+            <li>
+                <a href="#" class="btn">Contact Us</a>
+            </li>
+            <li>
+              <button id="cart-btn" aria-controls="checkout-modal" aria-expanded="false">
+                <span><i class="ri-shopping-cart-2-line"></i></span> 
+                Cart (<span id="cart-count" aria-live="polite">0</span>)
+              </button>
+            </li>
+            <li><a href="/login.html"><!-- <i class="ri-user-line"></i> --> <span class="log-in">Log In</span></a></li>
+        </ul>
+</nav>
+</header>
+
+<!--Hero Section-->
+<section class="hero-section">
+  <div class="hero-content">
     
-    <div class="f-cart" role="region" aria-labelledby="cart-section">
-      <div class="logo">
-        <img src="/Images/Nivea_logo.svg" alt="Nivea Logo"/>
-      </div>
-      <div class="search-container" role="search">
-        <div class="input-wrapper">
-          <input 
-            type="text" placeholder="Search products..." id="search-bar" aria-label="Search for products" />
-          <span id="clear-btn" class="clear-icon" aria-label="Clear search">&times;</span>
-        </div>
-      </div>
+    <h1>Empower Your Beauty, Everyday</h1>
+    <p>
+      Discover a wide range of premium beauty products that bring elegance and confidence to your everyday life.  
+    </p>
+    <div class="hero-buttons">
+      <a href="#products">Shop Now</a>
+      <a href="#about-company">Learn More</a>
+    </div>
+    <div class="search-container" role="search">
+      <input 
+        type="text" 
+        placeholder="Search products..." 
+        id="search-bar" 
+        aria-label="Search for products"
+      />
+      <button title="Search" id="search-btn" aria-label="Search">
+        <i class="ri-search-line"></i> 
+      </button>
+    </div>
+  </div>
+  
+</section>
 
-      <!-- Cart icon and controls -->
-      <div class="cart-icon" role="region" aria-labelledby="cart-controls">
-        <!-- Button to open the cart modal -->
-        <button id="cart-btn" aria-controls="checkout-modal" aria-expanded="false">
-          <span><i class="ri-shopping-cart-2-line"></i></span> 
-          Cart (<span id="cart-count" aria-live="polite">0</span>)
-        </button>
+<div id="checkout-modal" class="modal hidden" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+  <div class="modal-content">
+    <h2 id="modal-title">Cart Summary</h2>
+
+    <!-- List of items in the cart -->
+
+    <div id="cart-items-list" class="scrollable" role="list" aria-label="List of items in your cart"></div>
+
+    <!-- Cart summary details -->
+    <div class="cart-summary">
+      <p><strong>Subtotal:</strong> GHC <span id="subtotal">0.00</span></p> 
+      <div class="check">
+        <!-- Button to proceed to checkout -->
+        <button id="checkout-btn">Checkout (GHC <span id="checkout-total" aria-live="polite">0.00</span>)</button>
+      </div>
+    </div>            
+  </div>
+</div>
+</div>
+<!-- <div id="checkout-modal" class="modal hidden">
+</div> -->
+
+<section class="flash-container">
+  <div class="flash-sales">
+    <h1><i class="ri-shield-flash-line"></i> Flash Sales</h1>
+    <h4>Time Left: <span id="time-left"></span></h4>
+    <div></div>
+  </div>
+  <div class="flash-products">
+
+  </div>
+</section>
+
+<section>
+  <div class="container" role="region" aria-labelledby="top-deals">
+    <div class="top-deals" id="products">
+      <h1 id="top-deals">Top Deals</h1> 
+    </div>
+  
+
+    <!-- Container for displaying product items -->
+    <div class="products-container" role="list" aria-label="Available products"></div>
+  </div>
+</section>
+
+<section class="video-section" id="video-section">
+  <div class="video-container">
+    <div class="video-wrapper">
+      <iframe width="760" height="315" src="https://www.youtube.com/embed/DjY-01S_dgs?si=75026y0OX5pyuKkj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+
+<section class="brand-partners" id="brand-partners">
+  <div class="brand-partners-container">
+    <h2>Our Trusted Brand Partners</h2>
+    <p>We are proud to collaborate with some of the best brands in the industry to deliver exceptional products and services to our customers.</p>
+    <div class="partners-logos">
+      <div class="partner-logo">
+        <img src="/Images/Nivea_logo.svg" alt="Nivea logo" title="Nivea">
+      </div>
+      <div class="partner-logo">
+        <img src="/Images/Dove logo.svg" alt="Dove" title="Dove">
+      </div>
+      <div class="partner-logo">
+        <img src="/Images/unilever-logo.jpg" alt="Unilever" title="Unilever">
+      </div>
+      <div class="partner-logo">
+        <img src="/Images/Chanel_logo_interlocking_cs.svg.png" alt="Chanel logo" title="Chanel">
+      </div>
+      <div class="partner-logo">
+        <img src="/Images/Christian Dior SE logo - Brandlogos.net.svg" alt="Dior logo" title="Christian Dior">
+      </div>
+      <div class="partner-logo">
+        <img src="/Images/versace-logo.png" alt="Versace logo" title="Versace">
+      </div>
+      <div class="partner-logo">
+        <img src="/Images/Dolce & Gabbana logomark logo - Brandlogos.net.svg" alt="Partner 3" title="Dolce & Gabbana">
+      </div>
+      <div class="partner-logo">
+        <img src="/Images/Maison 21G logo - Brandlogos.net.svg" alt="Maison logo" title="Maison">
       </div>
     </div>
-        <div id="checkout-modal" class="modal hidden" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
-          <div class="modal-content">
-            <h2 id="modal-title">Cart Summary</h2>
+  </div>
+</section>
 
-            <!-- List of items in the cart -->
-            <div id="cart-items-list" class="scrollable" role="list" aria-label="List of items in your cart"></div>
+<section class="about-company" id="about-company">
+  <div class="about-company-container">
+    <div class="company-image">
+      <img src="/Images/pexels-marketingtuig-87223.jpg" alt="Hayate Cosmetics Headquarters" id="company-img">
+    </div>
+    <div class="company-details">
+      <h2>About Hayate Cosmetics</h2>
+      <p class="company-description">
+        Hayate Cosmetics is a globally recognized brand, redefining beauty through innovation, inclusivity, and sustainability. Known for its high-quality, cruelty-free, and eco-conscious products, the company is dedicated to empowering individuals to embrace their unique beauty.
+      </p>
+      <p id="extra-company-info" class="hidden">
+        Since its founding, Hayate Cosmetics has been at the forefront of the beauty industry, blending science, nature, and artistry to create products that cater to all skin types and tones. The company is committed to sustainability, evident in its eco-friendly packaging and ethical sourcing practices.  
+        <br><br>
+        Hayate Cosmetics also actively supports community initiatives that promote self-confidence and self-expression. By setting new standards in beauty, Hayate Cosmetics continues to inspire individuals worldwide to feel radiant and confident every day.
+      </p>
+      <button id="show-more-company-btn">Read More</button>
+    </div>
+  </div>
+</section>
 
-            <!-- Cart summary details -->
-            <div class="cart-summary">
-              <p><strong>Subtotal:</strong> GHC <span id="subtotal">0.00</span></p> 
-              <div class="check">
-                <!-- Button to proceed to checkout -->
-                <button id="checkout-btn">Checkout (GHC <span id="checkout-total" aria-live="polite">0.00</span>)</button>
-              </div>
-            </div>            
+
+
+<section class="about-ceo" id="about-ceo">
+  <div class="about-ceo-container">
+    <div class="ceo-image">
+      <img src="/Images/IMG-20240911-WA0059.jpg" alt="CEO Photo" id="ceo-img" title="CEO-Hayate">
+    </div>
+    <div class="ceo-details">
+      <h2>Yussif Hayate</h2>
+      <p><strong>CEO & Founder</strong></p>
+      <p class="ceo-description">
+        Hayate, the visionary leader behind Hayate Cosmetics, is a trailblazer in the beauty industry with a passion for innovation and inclusivity. With a deep understanding of skincare and cosmetics, Hayate founded the brand to empower individuals to embrace their unique beauty.
+      </p>
+      <p id="extra-bio" class="hidden">
+        Under Hayate's leadership, Hayate Cosmetics has grown into a trusted name synonymous with high-quality, cruelty-free, and eco-conscious products. A champion of diversity and sustainability, Hayate ensures that every product reflects the brand's commitment to creating beauty solutions for all skin types and tones while protecting the planet.
+        Beyond business, Hayate is an advocate for self-confidence and self-expression, inspiring people to feel their best in their skin. With a relentless drive to redefine beauty standards, Hayate continues to push boundaries, delivering innovative products that combine science, nature, and artistry.
+      </p>
+      <button id="show-more-btn">Read More</button>
+    </div>
+  </div>
+</section>
+
+
+
+
+<div id="order-summary">
+  
+</div>
+
+<div id="toast-container" aria-live="polite" aria-atomic="true" role="status"></div>
+
+
+    <!--Footer Section-->
+<footer>
+  <div class="footer-container">
+      <div class="footer-col">
+          <div class="footer-logo">
+            <img src="/Images/NEW LOGO.png" alt="logo" class="logo">
           </div>
-        </div>
-    <div id="checkout-modal" class="modal hidden">
-    </div>
-    <div class="container" role="region" aria-labelledby="top-deals">
-      <div class="top-deals">
-        <h1 id="top-deals">Top Deals</h1> 
-        <a href="#" aria-label="See all top deals">
-          See All<span><i class="ri-arrow-drop-right-fill"></i></span>
-        </a>
+          <ul class="footer-links">
+              <li>
+                  <a href="tel:+233551333780"><span></span><i class="ri-phone-line"></i>
+                      +233 551 333 780</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="https://www.google.com/maps/place/New+Gbewa+Palace,+Yendi+-+Saboba+Rd,+Yendi/@9.4441885,-0.0069935,17.41z/data=!4m6!3m5!1s0xfd5f61d0591d0dd:0x73eaa1283da8a02!8m2!3d9.4427872!4d-0.0018943!16s%2Fg%2F12hnxrwf0!5m1!1e1?entry=ttu&g_ep=EgoyMDI0MTEyNC4xIKXMDSoJLDEwMjExMjMzSAFQAw%3D%3D" target="_blank"><span></span><i class="ri-map-pin-line"></i>   AAMUSTED, Tanoso</span>
+                  </a>
+              </li>
+              <li><a href="mailto:info@hayatecosmetics.com"><i class="ri-mail-line">
+              </i> info@hayatecosmetics.com</a></li>
+          </ul>
       </div>
+      <div class="footer-col2">
+          <h4>Menu</h4>
+          <ul class="header-links">
+              <li><a href="#">Home</a></li>
+              <li><a href="#about-company">About</a></li>
+          </ul>
+          <div class="social-share">
+              <a href="https://web.facebook.com/" target="_blank" title="Follow us on Facebook"><i class="ri-facebook-line"></i></a>
+              <a href="https://www.x.com/" target="_blank" title="Follow us on X"><i class="ri-twitter-x-line"></i></a>
+              <a href="https://www.youtube.com/watch?v=DjY-01S_dgs" target="_blank" title="Subscribe to our channel"><i class="ri-youtube-line"></i></a>
+          </div> 
+      </div>
+      <div class="footer-col6" id="column">
+          <h2>Join our newsletter</h2>
+          <p>Stay turned for new product updates</p>
+          <form action="/">
+              <input type="text" placeholder="Enter your email">
+              <button class="btn" title="Subscribe to our newsletter">Subscribe</button>
+          </form>
+      </div> 
+      
+</footer>
+<div class="footer-bar">
+  <p><i class="ri-copyright-line"></i><span id="footer-year"></span> Hayate Cosmetics. All rights reserved.</p>
+  <p>Develop by Simdi Technologies</p>
+</div>
 
-      <!-- Container for displaying product items -->
-      <div class="products-container" role="list" aria-label="Available products"></div>
-    </div>
-    <div id="order-summary">
-    </div>
-    <div id="toast-container" aria-live="polite" aria-atomic="true" role="status"></div>
-  </main>
+
   <script type="module" src="/JS/main.js"></script>
 </body>
 </html>

@@ -1,37 +1,198 @@
-/* ---------------------------- Importing Data ---------------------------- */
 import { items } from './itemsData.js';
+
+const menuBtn = document.getElementById("menu-line");
+const navLinks = document.getElementById("ul-links");
+const menuBtnIcon = menuBtn.querySelector("i");
+
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+  const isOpen = navLinks.classList.contains("open");
+  menuBtnIcon.setAttribute("class", isOpen ? "ri-close-line" : "ri-menu-line");
+});
+
+document.querySelectorAll(".nav-links li a").forEach((link) => {
+  link.addEventListener("click", () => {
+    if (window.innerWidth <= 768) {
+      navLinks.classList.remove("open");
+      menuBtnIcon.setAttribute("class", "ri-menu-line");
+    }
+  });
+});
+
+document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+function toggleBio() {
+  const extraBio = document.getElementById("extra-bio");
+  const button = document.getElementById("show-more-btn");
+
+  if (extraBio.classList.contains("hidden")) {
+    extraBio.classList.remove("hidden");
+    button.textContent = "Read Less"; 
+  } else {
+    extraBio.classList.add("hidden");
+    button.textContent = "Read More"; 
+  };
+};
+
+function toggleCompanyInfo() {
+  const extraInfo = document.getElementById("extra-company-info");
+  const button = document.getElementById("show-more-company-btn");
+
+  if (extraInfo.classList.contains("hidden")) {
+    extraInfo.classList.remove("hidden");
+    button.textContent = "Read Less"; 
+  } else {
+    extraInfo.classList.add("hidden");
+    button.textContent = "Read More"; 
+  };
+};
+
+
+function startFlashSalesTimer(endTime) {
+  const timeLeftElement = document.getElementById("time-left");
+
+  function updateTimer() {
+    const now = new Date().getTime();
+    const timeRemaining = endTime - now;
+
+    if (timeRemaining <= 0) {
+      clearInterval(timerInterval);
+      timeLeftElement.textContent = "Sale Ended!";
+      return;
+    }
+
+    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+    timeLeftElement.textContent = `${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
+  }
+
+  const timerInterval = setInterval(updateTimer, 1000);
+  updateTimer(); 
+}
+
+const flashSaleEndTime = new Date().getTime() + 15 * 24 * 60 * 60 * 1000; 
+startFlashSalesTimer(flashSaleEndTime);
+
+
+const products = [
+  { id: 10, title: "Nivea Men Invisible Roll On", price: 20,
+    description: {
+      short: "Nivea Men Invisible Roll On offers 48-hour sweat and...",
+      long: "Nivea Men Invisible Roll On is the ultimate solution for men who want effective sweat and odor protection while keeping their clothes spotless.",
+    }, img: "Images/Nivea Men Invisible Black & White Roll On 50 ml - Deodorant hos Luxplus.jpeg",  quantity: 0 },
+  {id: 11, title: "St. Ives Smoothing", price: 30, description: {
+    short: "St. Ives Smoothing exfoliates and nourishes your skin...",
+    long: "St. Ives Smoothing is a skincare essential designed to exfoliate away dull, dry skin while nourishing it for a healthy, radiant glow.",
+  }, img: "Images/These Skincare Products Are the Next Best Thing To Injectables, According To a Professional (1).jpeg", quantity: 0, },
+  {id: 12, title: "Valentino Born in Roma Uomo", price: 29, description: {
+    short: "Valentino Born in Roma Uomo is a bold and sophisticated...",
+    long: "Valentino Born in Roma Uomo is an elegant and modern fragrance that captures the essence of the city of Rome with its vibrant, yet refined composition.",
+  }, img: "Images/Brand New & Sealed Valentino Born in Roma Uomo Eau de Toilette for Men 150ml  _ eBay.jpeg", quantity: 0 },
+  {id: 13, title: "Dr Organic Manuka Honey Body", price: 15, description: {
+    short: "Dr Organic Manuka Honey Body Wash gently cleanses...",
+    long: "Dr Organic Manuka Honey Body Wash is a luxurious, nourishing cleanser that combines the power of organic Manuka honey with natural botanical ingredients.",
+  }, img: "Images/Dr Organic Manuka Honey Body Wash 250ml.jpeg", quantity: 0 },
+  {id: 14, title: "Les 9 Perfume", price: 35, description: {
+    short: "Les 9 Perfume is a sophisticated and captivating...",
+    long: "Les 9 Perfume is an exquisite fragrance designed to make a bold statement. This complex and enchanting scent features a harmonious blend of floral notes, fresh fruits, and warm woods.",
+  }, img: "Images/Les 9 parfums homme incontournables de l'été.jpeg", quantity: 0 },
+  {id: 15, title: "Dove Pampering Body Wash", price: 25, description: {
+    short: "Dove Pampering Body Wash nourishes and pampers your...",
+    long: "Dove Pampering Body Wash is designed to provide your skin with the ultimate pampering experience. Its rich, creamy formula gently cleanses while delivering intense moisture.",
+  },img: "Images/Dove Pampering Body Wash Shea Butter With Warm Vanilla 500ml.jpeg", quantity: 0 },
+];
+
+function renderProducts(products) {
+  const productsContainer = document.querySelector(".flash-products");
+
+  productsContainer.innerHTML = "";
+
+  products.forEach((product) => {
+    const productCard = document.createElement("div");
+    productCard.classList.add("product");
+    productCard.setAttribute("role", "group");
+    productCard.setAttribute("aria-labelledby", `product-title-${product.id}`);
+    const productImg = document.createElement("img");
+    productImg.src = product.img;
+    productImg.alt = product.title;
+    productImg.setAttribute("aria-hidden", "true");
+    productCard.appendChild(productImg);
+
+    const details = document.createElement("div");
+    details.classList.add("details");
+
+    const productTitle = document.createElement("a");
+    productTitle.title = `View details for ${product.title}`;
+    productTitle.textContent = product.title;
+    productTitle.href = "#";
+    productTitle.id = `product-title-${product.id}`;
+    productTitle.setAttribute("aria-label", `View details for ${product.title}`);
+    productTitle.addEventListener("click", (e) => {
+      e.preventDefault(); 
+      showPopup(product); 
+    });
+    details.appendChild(productTitle);
+
+    const productDetails = document.createElement("p");
+    productDetails.textContent = product.description.short;
+    details.appendChild(productDetails);
+
+    const productPrice = document.createElement("p");
+    productPrice.classList.add("price");
+    productPrice.textContent = `GHC ${product.price}`;
+    details.appendChild(productPrice);
+
+    const productButton = document.createElement("button");
+    productButton.innerHTML = `<i class="ri-shopping-cart-2-line" aria-hidden="true"></i> Add to Cart`;
+    productButton.setAttribute("aria-label", `Add ${product.title} to cart`);
+    productButton.addEventListener("click", () => {
+      addToCart(product.id);
+    });
+
+    details.appendChild(productButton);
+    productCard.appendChild(details);
+    productsContainer.appendChild(productCard);
+  });
+}
+
+renderProducts(products);
+
 
 /* ---------------------- Initializing Variables ---------------------- */
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-const cartContainer = document.getElementById("cart-items-list");
-const totalCostElement = document.getElementById("subtotal");
 const modal = document.getElementById('checkout-modal');
-const productContainer = document.querySelector(".products-container");
+
 
 /* ----------------------- Utility Functions ----------------------- */
 // Save cart to local storage
 function saveToCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
-}
+};
 
 // Update cart count
 function updateCart() {
   const cartElement = document.getElementById("cart-count");
   cartElement.textContent = cart.length;
-}
+};
 
 // Calculate and display subtotal
 function subTotal() {
+  const totalCostElement = document.getElementById("subtotal");
   const checkoutTotal = document.getElementById("checkout-total");
   const totalCost = cart.reduce((sum, product) => sum + (product.price * product.quantity), 0);
   totalCostElement.textContent = totalCost.toFixed(2);
   checkoutTotal.textContent = totalCost.toFixed(2);
-}
+};
 
 /* ---------------------- Product Display Functions ---------------------- */
 // Display products dynamically
+
 function displayProducts(productList) {
+  const productContainer = document.querySelector(".products-container");
+
   productContainer.innerHTML = "";
 
   productList.forEach((item) => {
@@ -85,14 +246,13 @@ function displayProducts(productList) {
 
 // Function to show the popup
 function showPopup(product) {
+  const modal = document.getElementById("checkout-modal");
   modal.innerHTML = `
-    <div class="modal-content" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
-      <button id="close-modal" class="close-btn" aria-label="Close product details">
-        <i class="ri-close-line" aria-hidden="true"></i>
-      </button>
+    <div class="modal-content-box" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
       <img src="${product.img}" alt="${product.title}">
       <div class="product-details">
         <h2 id="modal-title">${product.title}</h2>
+        <div class="details">
         <p id="modal-description">${product.description.long}</p>
         <p class="price">GHC ${product.price}</p>
         <p class="stars" aria-label="Product rating: 4.5 out of 5 stars">
@@ -103,6 +263,7 @@ function showPopup(product) {
         <button id="cart-button" class="btns" aria-label="Add ${product.title} to cart">
           <i class="ri-shopping-cart-2-line" aria-hidden="true"></i> Add to Cart
         </button>
+        </div>
       </div>
     </div>
   `;
@@ -110,59 +271,67 @@ function showPopup(product) {
   modal.classList.remove("hidden");
   modal.classList.add("visible");
 
-  document.getElementById("close-modal").addEventListener("click", () => {
-    modal.classList.remove("visible");
-    modal.classList.add("hidden");
-  });
 
   const cartButton = document.getElementById("cart-button");
   cartButton.addEventListener("click", () => {
     addToCart(product.id);
+    location.reload();
     modal.classList.remove("visible");
     modal.classList.add("hidden");
     renderCart();
     updateCart();
+    
   });
+
+  window.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.classList.remove('visible');
+      modal.classList.add('hidden');
+      location.reload();
+    };
+  });
+ 
 };
 
-// Search products
-function searchProducts(searchTerm) {
-  const trimmedSearchTerm = searchTerm.trim();
 
-  const filteredProducts = trimmedSearchTerm
-    ? items.filter((item) =>
-        item.title.toLowerCase().includes(trimmedSearchTerm.toLowerCase())
-      )
-    : items;
-  displayProducts(filteredProducts);
-}
 
 /* ---------------------- Cart Management Functions ---------------------- */
 // Add product to cart
 function addToCart(itemId) {
-  const item = items.find((item) => item.id === itemId);
+  
+  const item = products.find((item) => item.id === itemId) || items.find((item) => item.id === itemId);
+
+  if (!item) {
+    console.error("Item not found:", itemId);
+    return;
+  }
+
+  
   const itemExists = cart.find((cartItem) => cartItem.id === itemId);
 
   if (itemExists) {
-    showToast(`${item.title} is already added to cart`);
     itemExists.quantity += 1;
+    showToast(`${item.title} quantity increased in cart`);
   } else {
     cart.push({ ...item, quantity: 1 });
     showToast(`${item.title} added successfully to cart`);
-    saveToCart();
-  }
+  };
 
-  updateCart();
-}
+  saveToCart();
+  updateCart(); 
+  };
 
 // Render cart items
 function renderCart() {
+  const cartContainer = document.getElementById("cart-items-list");
+
   cartContainer.innerHTML = "";
 
   if (cart.length === 0) {
     showToast("Your cart is empty!");
     return;
   }
+
   cart.forEach((product, index) => {
     const productDiv = document.createElement("div");
     productDiv.classList.add("products");
@@ -171,9 +340,9 @@ function renderCart() {
       <span>${product.title} - GHC ${product.price} </span>
       <span>QTY ${product.quantity}</span>
       <div class="buttons">
-        <button class="subtract-btn" aria-label="Decrease quantity of ${product.title}">-</button>
-        <button class="add-btn" aria-label="Increase quantity of ${product.title}">+</button>
-        <button class="delete-btn" data-id="${product.id}" aria-label="Remove ${product.title} from cart">
+        <button id="cart-btn" class="subtract-btn" aria-label="Decrease quantity of ${product.title}">-</button>
+        <button id="cart-btn" class="add-btn" aria-label="Increase quantity of ${product.title}">+</button>
+        <button id="cart-btn" class="delete-btn" data-id="${product.id}" aria-label="Remove ${product.title} from cart">
           <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
         </button>
       </div>
@@ -182,30 +351,35 @@ function renderCart() {
     productDiv.querySelector(".add-btn").addEventListener("click", () => updateQuantity(index, "add"));
     productDiv.querySelector(".subtract-btn").addEventListener("click", () => updateQuantity(index, "subtract"));
     productDiv.querySelector(".delete-btn").addEventListener("click", () => {
-        cart.splice(index, 1);
-        updateCart();
-        saveToCart();
-        renderCart();      
+      cart.splice(index, 1);
+      updateCart();
+      saveToCart();
+      renderCart();
     });
 
     cartContainer.appendChild(productDiv);
   });
 
-  modal.classList.remove('hidden');
-  modal.classList.add('visible');
+  modal.classList.remove("hidden");
+  modal.classList.add("visible");
   subTotal();
 
+  
+  document.removeEventListener("click", clickToClose);
   document.addEventListener("click", clickToClose);
-}
+};
+
 
 function clickToClose(event) {
-  const modalContent = document.querySelector(".modal-content");
+  
+  const modalContent = document.querySelector(".modal-content"); 
+
   if (!modalContent.contains(event.target) && !event.target.closest("#cart-btn")) {
     modal.classList.remove("visible");
     modal.classList.add("hidden");
-    document.removeEventListener("click", handleOutsideClick);
   }
-}
+};
+
 
 // Update quantity of items in cart
 function updateQuantity(index, action) {
@@ -217,11 +391,13 @@ function updateQuantity(index, action) {
   }
   saveToCart();
   renderCart();
-}
+};
 
 /* ---------------------- Checkout Functions ---------------------- */
 // Show order summary
 function orderSummary() {
+  const cartContainer = document.getElementById("cart-items-list"); 
+
   cartContainer.innerHTML = "";
   const totalItems = cart.reduce((sum, product) => sum + product.quantity, 0);
   const totalCost = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
@@ -236,6 +412,46 @@ function orderSummary() {
       <p>Total Cost: GHC ${totalCost.toFixed(2)}</p>
       <p>Tax (10%): GHC ${(totalCost * 0.10).toFixed(2)}</p>
       <p><strong>Grand Total: GHC ${(totalCost * 1.10).toFixed(2)}</strong></p>
+      
+      <!-- Shipping Address Form -->
+      <div class="shipping-address">
+        <h3>Shipping Address</h3>
+        <label for="address-line1">Address Line 1:</label>
+        <input type="text" id="address-line1" name="address-line1" required placeholder="Enter your street address" />
+
+        <label for="address-line2">Address Line 2 (optional):</label>
+        <input type="text" id="address-line2" name="address-line2" placeholder="Apartment, suite, unit, etc." />
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required placeholder="Enter your city" />
+
+        <label for="postal-code">Postal Code:</label>
+        <input type="text" id="postal-code" name="postal-code" required placeholder="Enter your postal code" />
+      </div>
+
+      <!-- Payment Method Form -->
+      <div class="payment-method">
+        <h3>Payment Method</h3>
+        <label for="payment-method">Choose a payment method:</label>
+        <select id="payment-method" name="payment-method" required>
+          <option value="" disabled selected>Select payment method</option>
+          <option value="credit-card">Credit/Debit Card</option>
+          <option value="paypal">PayPal</option>
+          <option value="cash-on-delivery">Cash on Delivery</option>
+        </select>
+      </div>
+
+      <!-- Delivery Information -->
+      <div class="delivery-info">
+        <h3>Delivery Information</h3>
+        <label for="delivery-date">Preferred Delivery Date:</label>
+        <input type="date" id="delivery-date" name="delivery-date" required />
+
+        <label for="delivery-time">Preferred Delivery Time:</label>
+        <input type="time" id="delivery-time" name="delivery-time" required />
+      </div>
+
+      <!-- Confirm Checkout -->
       <button id="confirm-checkout" class="checkout-btn" aria-label="Proceed to payment">Proceed to Payment</button>
     </div>
   `;
@@ -243,45 +459,101 @@ function orderSummary() {
   modal.classList.remove('hidden');
   modal.classList.add('visible');
 
-  document.getElementById("close-summary").addEventListener("click", () => {
-    modal.classList.remove('visible');
-    modal.classList.add('hidden');
-    location.reload();
-  });
 
   document.getElementById("confirm-checkout").addEventListener("click", () => {
-    cart = []; 
+    const addressLine1 = document.getElementById("address-line1").value;
+    const city = document.getElementById("city").value;
+    const postalCode = document.getElementById("postal-code").value;
+    const paymentMethod = document.getElementById("payment-method").value;
+    const deliveryDate = document.getElementById("delivery-date").value;
+    const deliveryTime = document.getElementById("delivery-time").value;
+
+    if (!addressLine1 || !city || !postalCode || !paymentMethod || !deliveryDate || !deliveryTime) {
+      alert("Please fill in all the required fields.");
+      return;
+    }
+
+    
+
+    // Reset the cart after successful checkout
+    cart = [];
     saveToCart();
     updateCart();
+
+    // Hide the modal and reload the page
     modal.classList.remove('visible');
     modal.classList.add('hidden');
-    alert("Proceeding to payment...");
+
+    alert(`Order placed successfully!\nShipping Address: ${addressLine1}, ${city}, ${postalCode}\nPayment Method: ${paymentMethod}\nDelivery: ${deliveryDate} at ${deliveryTime}`);
+    modal.classList.remove('visible');
+    modal.classList.add('hidden');
     location.reload();
   });
-}
+
+    // Close modal when clicking outside
+    window.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        modal.classList.remove('visible');
+        modal.classList.add('hidden');
+        location.reload();
+      };
+    });
+  
+  
+};
 
 /* ---------------------- Event Listeners ---------------------- */
+
 document.addEventListener("DOMContentLoaded", () => {
   displayProducts(items);
+  renderProducts(products);
   updateCart();
 });
+
+document.getElementById("show-more-btn").addEventListener("click", toggleBio);
+document.getElementById("show-more-company-btn").addEventListener("click", toggleCompanyInfo);
+
 
 const searchBar = document.getElementById("search-bar");
-const clearButton = document.getElementById("clear-btn");
+const searchBtn = document.getElementById("search-btn");
+const productsContainer = document.querySelector(".products-container");
+const flashProducts = document.querySelector(".flash-products");
 
-clearButton.addEventListener("click", () => {
-  searchBar.value = ""; 
-  searchProducts(""); 
-});
+// Function to search within products
+function searchProducts() {
+  const query = searchBar.value.toLowerCase().trim();
+  let found = false; 
 
-searchBar.addEventListener("input", (e) => {
-  const searchTerm = e.target.value;
-  if (searchTerm) {
-    clearButton.style.display = "inline";
-  } else {
-    clearButton.style.display = "none"; 
+  // Get all product items in both containers
+  const allProducts = [...productsContainer.children, ...flashProducts.children];
+
+  allProducts.forEach((product) => {
+    const titleElement = product.querySelector("p, h3, h2, .product-title"); 
+    const title = titleElement ? titleElement.textContent.toLowerCase() : "";
+
+    if (title.includes(query)) {
+      product.style.display = "gride"; 
+      found = true;
+    } else {
+      product.style.display = "none";
+    };
+  });
+
+  // Show "No products found" if no match
+  if (!found) {
+    productsContainer.innerHTML = `<p>No products found.</p>`;
+    flashProducts.innerHTML = "";
+  };
+};
+
+// Event Listeners
+searchBtn.addEventListener("click", searchProducts);
+searchBar.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    searchProducts();
   }
 });
+
 
 document.getElementById("cart-btn").addEventListener("click", renderCart);
 
@@ -292,28 +564,6 @@ document.getElementById('checkout-btn').addEventListener("click", () => {
     orderSummary();
   }
 });
-
-/* ---------------------- Event Listeners ---------------------- */
-document.addEventListener("DOMContentLoaded", () => {
-  displayProducts(items);
-  updateCart();
-});
-
-searchBar.addEventListener("input", (e) => {
-  const searchTerm = e.target.value;
-  searchProducts(searchTerm);
-});
-
-document.getElementById("cart-btn").addEventListener("click", renderCart);
-
-document.getElementById('checkout-btn').addEventListener("click", () => {
-  if (cart.length === 0) {
-    showToast('Your cart is empty!');
-  } else {
-    orderSummary();
-  }
-});
-
 
 
 /* ---------------------------- Toast Notification ---------------------------- */
@@ -330,5 +580,7 @@ function showToast(message) {
   setTimeout(() => {
     toast.remove();
   }, 3000);
-}
+};
+
+
 

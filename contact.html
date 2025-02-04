@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Hayate Cosmetics</title>
+    <title>Contact Us - Hayate Cosmetics</title>
     <link rel="icon" href="/Images/comlogo.png" type="image/x-icon">
     <link rel="stylesheet" href="/Styles/styles.css">
     <link rel="stylesheet" href="/Styles/style.css">
@@ -12,28 +12,32 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div class="nav-header">
-                <div class="nav-logo">
-                    <img src="/Images/NEW LOGO.png" alt="logo" class="logo">
-                </div>
-                <div class="nav-menu-btn" id="menu-line">
-                    <i class="ri-menu-line" aria-label="menu-line"></i>
-                </div>
-            </div>
-            <ul class="nav-links" id="ul-links" aria-label="nav-links">
-                <li><a href="/index.html" aria-label="home">Home</a></li>
-                <li><a href="/index.html#about-company" aria-label="about">About</a></li>
-                <li><a href="contact.html" class="btn">Contact Us</a></li>
-                <li>
+    <!--Navbar Section-->
+<nav>
+    <div class="nav-header">
+        <div class="nav-logo">
+            <img src="/Images/NEW LOGO.png" alt="logo" class="logo">
+            <!--  <a href="#" class="logo">Pulse<span>bit</span></a> -->
+        </div>
+        <div class="nav-menu-btn" id="menu-line">
+            <i class="ri-menu-line" aria-label="menu-line"></i>
+        </div>
+    </div>
+        <ul class="nav-links" id="ul-links" aria-label="nav-links">
+            <li><a href="index.html" aria-label="home">Home</a></li>
+            <li><a href="#about-company" aria-label="about">About</a>
+            </li>
+            <li>
                 <button id="cart-btn" aria-controls="checkout-modal" aria-expanded="false">
-                    <span><i class="ri-shopping-cart-2-line"></i></span> 
-                    Cart (<span id="cart-count" aria-live="polite">0</span>)
+                <span><i class="ri-shopping-cart-2-line"></i></span> 
+                Cart (<span id="cart-count" aria-live="polite">0</span>)
                 </button>
-                </li>
-            </ul>
-        </nav>
-    </header>
+            </li>
+            <li><a href="/login.html"><span class="log-in"><i class="ri-user-line"></i> Sign In</span></a></li>
+        </ul>
+</nav>
+</header>
+
     
     <div class="container1">
         <div class="wrapper">
@@ -52,21 +56,15 @@
                     <input type="text" placeholder="Phone Number" required>
                 </div>
                 <div class="row">
-                    <i class='bx bxs-lock-alt'></i>
-                    <input type="password" placeholder="Password" required>
-                </div>
-                <div class="row">
-                    <i class='bx bxs-lock-alt'></i>
-                    <input type="password" placeholder="Confirm Password" required>
+                    <i class='bx bxs-message-detail'></i>
+                    <textarea placeholder="Your Message" required></textarea>
                 </div>
                 <div class="row button">
-                    <input type="submit" value="Sign Up">
+                    <input type="submit" value="Send Message">
                 </div>
-                <div class="signup-link">Already have an account? <a href="/login.html">Sign In</a></div>
             </form>
         </div>
     </div>
-
     <!--Footer Section-->
     <footer>
     <div class="footer-container">

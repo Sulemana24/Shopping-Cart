@@ -23,11 +23,10 @@ body {
     --max-width: 1200px;
 }
 
-.container{
+.container1{
     max-width: 440px;
     padding: 0 20px;
-    margin: 3rem auto;
-    
+    margin: 8rem auto;
 }
 .wrapper{
     width: 100%;
@@ -117,4 +116,21 @@ form .button input:hover{
 }
 form .signup-link a:hover{
     text-decoration: underline;
+}
+
+.row textarea{
+    height: 100%;
+    width: 100%;
+    padding-left: 60px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+@media (width > 768px){
+    .container1{
+        margin: 3rem auto;
+    }
 }

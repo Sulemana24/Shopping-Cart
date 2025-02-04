@@ -18,7 +18,6 @@
     <div class="nav-header">
         <div class="nav-logo">
           <img src="/Images/NEW LOGO.png" alt="logo" class="logo">
-            <!--  <a href="#" class="logo">Pulse<span>bit</span></a> -->
         </div>
         <div class="nav-menu-btn" id="menu-line">
             <i class="ri-menu-line" aria-label="menu-line"></i>
@@ -29,7 +28,7 @@
             <li><a href="#about-company" aria-label="about">About</a>
             </li>
             <li>
-                <a href="#" class="btn">Contact Us</a>
+                <a href="contact.html" class="btn">Contact Us</a>
             </li>
             <li>
               <button id="cart-btn" aria-controls="checkout-modal" aria-expanded="false">
@@ -37,7 +36,7 @@
                 Cart (<span id="cart-count" aria-live="polite">0</span>)
               </button>
             </li>
-            <li><a href="/login.html"><!-- <i class="ri-user-line"></i> --> <span class="log-in">Log In</span></a></li>
+            <li><a href="/login.html"><span class="log-in"><i class="ri-user-line"></i> Sign In</span></a></li>
         </ul>
 </nav>
 </header>
@@ -88,8 +87,6 @@
   </div>
 </div>
 </div>
-<!-- <div id="checkout-modal" class="modal hidden">
-</div> -->
 
 <section class="flash-container">
   <div class="flash-sales">
@@ -176,8 +173,6 @@
   </div>
 </section>
 
-
-
 <section class="about-ceo" id="about-ceo">
   <div class="about-ceo-container">
     <div class="ceo-image">
@@ -198,15 +193,9 @@
   </div>
 </section>
 
-
-
-
-<div id="order-summary">
-  
-</div>
+<!-- Toast Notification -->
 
 <div id="toast-container" aria-live="polite" aria-atomic="true" role="status"></div>
-
 
     <!--Footer Section-->
 <footer>
@@ -222,7 +211,7 @@
                   </a>
               </li>
               <li>
-                  <a href="https://www.google.com/maps/place/New+Gbewa+Palace,+Yendi+-+Saboba+Rd,+Yendi/@9.4441885,-0.0069935,17.41z/data=!4m6!3m5!1s0xfd5f61d0591d0dd:0x73eaa1283da8a02!8m2!3d9.4427872!4d-0.0018943!16s%2Fg%2F12hnxrwf0!5m1!1e1?entry=ttu&g_ep=EgoyMDI0MTEyNC4xIKXMDSoJLDEwMjExMjMzSAFQAw%3D%3D" target="_blank"><span></span><i class="ri-map-pin-line"></i>   AAMUSTED, Tanoso</span>
+                  <a href="https://www.google.com/maps/search/aamusted+(formerly+uew-kumasi)+sunyani+road+kumasi/@6.6976281,-1.6833419,17.96z/data=!5m1!1e1?entry=ttu&g_ep=EgoyMDI1MDEyOS4xIKXMDSoASAFQAw%3D%3D" target="_blank"><span></span><i class="ri-map-pin-line"></i>   AAMUSTED, Tanoso</span>
                   </a>
               </li>
               <li><a href="mailto:info@hayatecosmetics.com"><i class="ri-mail-line">
@@ -244,12 +233,11 @@
       <div class="footer-col6" id="column">
           <h2>Join our newsletter</h2>
           <p>Stay turned for new product updates</p>
-          <form action="/">
-              <input type="text" placeholder="Enter your email">
-              <button class="btn" title="Subscribe to our newsletter">Subscribe</button>
-          </form>
+          <form action="/" onsubmit="return validateForm()">
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <button class="btn" title="Subscribe to our newsletter">Subscribe</button>
+        </form>
       </div> 
-      
 </footer>
 <div class="footer-bar">
   <p><i class="ri-copyright-line"></i><span id="footer-year"></span> Hayate Cosmetics. All rights reserved.</p>
@@ -257,6 +245,8 @@
 </div>
 
 
-  <script type="module" src="/JS/main.js"></script>
+<script type="module" src="/JS/main.js"></script>
+<!-- <script src="/JS/home.js"></script> -->
+  
 </body>
 </html>

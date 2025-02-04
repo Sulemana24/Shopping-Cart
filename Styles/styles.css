@@ -22,6 +22,7 @@ body {
   --extra-light: #f3f4f6;
   --white: #fff;
   --max-width: 1200px;
+  --top-deals: #f5dbd6;
 }
 
  /* Nav Section */
@@ -125,6 +126,29 @@ button:hover {
   background-color:  hsl(167, 38%, 22%);
 }
 
+#dark-mode-toggle{
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  color: #000;
+}
+
+#dark-mode-toggle i{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #000;
+}
+
+#dark-mode-toggle:hover{
+  background-color: #e5e5e5;
+}
+
+
 .hero-section {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url('/Images/perfume-7711552_1280.jpg') center/cover no-repeat;
   height: 100vh;
@@ -167,7 +191,7 @@ button:hover {
   border-radius: 5px;
   cursor: pointer;
   background-color: var(--text-dark);
-  color: #fff;
+  color: var(--extra-light);
   transition: all 0.3s ease;
 }
 
@@ -196,7 +220,7 @@ button:hover {
 #search-btn {
   padding: 10px;
   font-size: 16px;
-  color: white;
+  color: var(--extra-light);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -213,7 +237,7 @@ button:hover {
 }
 
 .flash-sales{
-  background-color: #e39a89;
+  background-color: var(--top-deals);
   color: var(--text-dark);
   padding: 10px;
   display: flex;
@@ -242,10 +266,10 @@ button:hover {
   justify-content: space-between;
   padding: 2rem;
   border-radius: 5px 5px 0 0;
-  background-color: hsl(11, 62%, 90%);
+  background-color: var(--top-deals);
   margin: 0 auto;
   margin-top: 2rem;
-  color: hsl(167, 38%, 17%);
+  color: var(--text-dark);
 }
 
 .top-deals h1 {
@@ -279,6 +303,7 @@ button:hover {
   align-items: center;
   flex-direction: column;
   margin: 0;
+  color: var(--text-dark);
 }
 
 .product a:hover{
@@ -300,6 +325,7 @@ button:hover {
   align-items: center;
   justify-content: center;
   gap: 5px;
+  
 }
 
 .details p {
@@ -311,7 +337,6 @@ button:hover {
 .details .price {
   font-weight: 700;
   font-size: 1.3rem;
-  color: var(--text-dark);
 }
 
 .modal {
@@ -331,7 +356,7 @@ button:hover {
 }
 
 .modal-content {
-  background: #fff;
+  background: var(--extra-light);
   padding: 10px;
   border-radius: 5px;
   width: 90%;
@@ -342,13 +367,13 @@ button:hover {
 
 .modal-content h2,
 .modal-content .price {
-  color: #222d87;
+  color: var(--text-dark);
   font-weight: 700;
   font-size: 1.3rem;
 }
 
 .modal-content p {
-  color: #222d87;
+  color: var(--text-dark);
   font-size: 1rem;
   margin: 10px 0;
   text-align: center;
@@ -369,7 +394,7 @@ button:hover {
 }
 
 .modal-content-box{
-  background-color: #fff;
+  background-color: var(--extra-light);
   padding: 2rem 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -388,8 +413,6 @@ button:hover {
   margin: 2rem auto;
   width: 15%;
 }
-
-
 
 .product-details{
   display: flex;
@@ -420,7 +443,7 @@ button:hover {
 }
 
 .cart-summary p {
-  color: #222d87;
+  color: var(--text-dark);
   margin-right: 2rem;
 }
 
@@ -430,13 +453,13 @@ button:hover {
   align-items: center;
   margin-bottom: 10px;
   padding: 10px 0;
-  border: 1px solid #ddd;
+  border: 1px solid var(--text-light);
   border-radius: 5px;
   width: 100;
 }
 
 .products span {
-  color: #222d87;
+  color: var(--text-dark);
 }
 
 .products span:nth-child(2) {
@@ -445,7 +468,7 @@ button:hover {
 }
 
 .products h2 {
-  color: #222d87;
+  color: var(--text-dark);
 }
 
 .buttons button{
@@ -489,15 +512,12 @@ button:hover {
 
 /* Modal Style */
 .order-summary {
-  background-color: #fff;
+  background-color: var(--extra-light);
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 600px;
-  margin: auto;
-  position: relative;
-  overflow-y: auto;  
-  max-height: 80vh;  
+  margin: 9rem auto 0;
+  overflow-y: auto; 
+  width: 100%;
 }
 
 .order-summary h3 {
@@ -526,20 +546,19 @@ button:hover {
 }
 
 .shipping-address input,
-.payment-method select,
+select,
 .delivery-info input {
   width: 100%;
   padding: 10px;
   margin: 5px 0 15px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--text-light);
   border-radius: 4px;
   font-size: 1rem;
 }
 
 .shipping-address input[type="text"],
 .payment-method select,
-.delivery-info input[type="date"],
-.delivery-info input[type="time"] {
+.delivery-info input[type="date"]{
   font-size: 1rem;
 }
 
@@ -560,67 +579,6 @@ button:hover {
   text-align: center;
 }
 
-.close-btn i {
-  color: white;
-}
-
-/* Scrollable Content */
-.order-summary {
-  max-height: 70vh;
-  overflow-y: auto;
-}
-
-.order-summary::-webkit-scrollbar {
-  width: 8px;
-}
-
-.order-summary::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 4px;
-}
-
-.order-summary::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
-}
-
-.order-summary::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .order-summary {
-    padding: 15px;
-    max-width: 100%;
-  }
-
-  .order-summary h3 {
-    font-size: 1.3rem;
-  }
-
-  .shipping-address input,
-  .payment-method select,
-  .delivery-info input {
-    font-size: 0.9rem;
-  }
-}
-
-.order-summary .close-btn{
-  color: #222d87;
-  background: none;
-} 
-
-.order-summary .close-btn {
-  position: absolute;
-  top: 90px;
-  right: 40px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #222d87;
-  padding: 50px;
-}
 
 #toast-container {
   position: fixed;
@@ -631,7 +589,7 @@ button:hover {
 
 .toast {
   background-color: green;
-  color: white;
+  color: var(--extra-light);
   padding: 10px 20px;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -650,7 +608,7 @@ button:hover {
 }
 
 .about-ceo {
-  background-color: #ffffff;
+  background-color: var(--extra-light);
   padding: 50px 20px;
   display: flex;
   justify-content: center;
@@ -731,7 +689,7 @@ button:hover {
 #show-more-company-btn {
   padding: 10px 15px;
   font-size: 14px;
-  color: white;
+  color: var(--white);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -750,7 +708,7 @@ button:hover {
 .brand-partners-container {
   text-align: center;
   padding: 40px;
-  background-color: hsl(11, 62%, 90%);
+  background-color: var(--top-deals);
 }
 
 h2 {
@@ -801,42 +759,6 @@ iframe {
   border-radius: 8px;
 }
 
-@media (max-width: 768px) {
-  .hero-content h1 {
-    font-size: 2rem;
-  }
-
-  .hero-content p {
-    font-size: 12px;
-  }
-
-  .hero-buttons a {
-    font-size: 0.9rem;
-  }
-
-  .about-ceo-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .ceo-image img {
-    width: 150px;
-    height: 150px;
-  }
-
-  .ceo-details {
-    text-align: center;
-    margin-left: 0;
-  }
-
-  #search-bar {
-    max-width: 90%; 
-  }
-
-  #search-btn {
-    padding: 8px;
-  }
-}
 
 footer {
   background-color: var(--primary-color);
@@ -957,6 +879,60 @@ footer {
   font-size: 12px;
   margin: 1rem 0 2rem;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 12px;
+  }
+
+  .hero-buttons a {
+    font-size: 0.9rem;
+  }
+
+  .about-ceo-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ceo-image img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .ceo-details {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  #search-bar {
+    max-width: 90%; 
+  }
+
+  #search-btn {
+    padding: 8px;
+  }
+
+  .order-summary {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  .order-summary h3 {
+    font-size: 1.3rem;
+  }
+
+  .shipping-address input,
+  .payment-method select,
+  .delivery-info input {
+    font-size: 0.9rem;
+  }
+} 
 
 @media (min-width: 768px) {
 

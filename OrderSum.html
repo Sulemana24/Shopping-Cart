@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - Hayate Cosmetics</title>
+    <title>Order Summary - Hayate Cosmetics</title>
     <link rel="icon" href="/Images/comlogo.png" type="image/x-icon">
     <link rel="stylesheet" href="/Styles/styles.css">
     <link rel="stylesheet" href="/Styles/style.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
     rel="stylesheet"/>
@@ -43,27 +41,75 @@
     </nav>
     </header>
 
-    <div class="container1">
-    <div class="wrapper">
-        <div class="title"> <img src="/Images/comlogo.png" alt="logo" width="60px"></div>
-        <form action="#">
-            <div class="row">
-            <i class='bx bxs-user'></i>
-            <input type="text" placeholder="Email or Phone" required>
-        </div>
-        <div class="row">
-            <i class='bx bxs-lock-alt'></i>
-            <input type="password" placeholder="Password" required>
-        </div>
-        <div class="pass"><a href="#">Forgot password?</a></div>
-        <div class="row button">
-            <input type="submit" value="Login">
-        </div>
-        <div class="signup-link">Not a member? <a href="/signUp.html">Signup now</a></div>
-        </form>
-    </div>
-</div>
+        <!-- Order Summary Modal -->
+    <div class="order-summary" role="dialog" aria-labelledby="summary-title">
+        <h3 id="summary-title">Order Summary</h3>
+        <form id="checkout-form">
+        <p>Total Items: <span id="total-items">0</span></p>
+        <p>Total Cost: GHC <span id="total-cost">0.00</span></p>
+        <p>Tax (10%): GHC <span id="tax">0.00</span></p>
+        <p><strong>Grand Total: GHC <span id="grand-total">0.00</span></strong></p>
+    
+        <!-- Shipping Address Form -->
+        <div class="shipping-address">
+        <h3>Shipping Address</h3>
+        <label for="address-line1">Address Line 1:</label>
+        <input type="text" id="address-line1" name="address-line1" required placeholder="Enter your street address" />
 
+        <label for="address-line2">Address Line 2 (optional):</label>
+        <input type="text" id="address-line2" name="address-line2" placeholder="Apartment, suite, unit, etc." />
+
+        <label for="region">Choose Your Region:</label>
+        <select name="region" id="region" required>
+        <option value="" disabled selected>Choose Your Region</option>
+        <option value="Ahafo">Ahafo</option>
+        <option value="Ashanti">Ashanti</option>
+        <option value="Bono-East">Bono East</option>
+        <option value="Bono">Bono</option>
+        <option value="Central">Central</option>
+        <option value="Eastern">Eastern</option>
+        <option value="Greater-Accra">Greater-Accra</option>
+        <option value="North-East">North-East</option>
+        <option value="Northern">Northern</option>
+        <option value="Oti">Oti</option>
+        <option value="Savannah">Savannah</option>
+        <option value="Upper-East">Upper-East</option>
+        <option value="Upper-West">Upper-West</option>
+        <option value="Volta">Volta</option>
+        <option value="Western-North">Western-North</option>
+        <option value="Western">Western</option>
+        </select>
+        
+
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required placeholder="Enter your city" />
+        </div>
+
+        <!-- Payment Method Form -->
+        <div class="payment-method">
+        <h3>Payment Method</h3>
+        <label for="payment-method">Choose a payment method:</label>
+        <select id="payment-method" name="payment-method" required>
+            <option value="" disabled selected>Select payment method</option>
+            <option value="mobile-money">Mobile Money</option>
+            <option value="credit-card">Credit/Debit Card</option>
+            <option value="paypal">PayPal</option>
+            <option value="cash-on-delivery">Cash on Delivery</option>
+        </select>
+        </div>
+
+        <!-- Delivery Information -->
+        <div class="delivery-info">
+        <h3>Delivery Information</h3>
+        <label for="delivery-date">Preferred Delivery Date:</label>
+        <input type="date" id="delivery-date" name="delivery-date" required />
+        <!-- Confirm Checkout -->
+        <button id="confirm-checkout" class="checkout-btn" aria-label="Proceed to payment">Proceed to Payment</button>
+    </form>
+    </div>
+    
+    
     <!--Footer Section-->
 <footer>
     <div class="footer-container">
@@ -112,6 +158,7 @@
     <p>Develop by Simdi Technologies</p>
 </div>
 
-<script type="module" src="/JS/main.js"></script>
+
+<script src="/JS/home.js"></script>
 </body>
 </html>

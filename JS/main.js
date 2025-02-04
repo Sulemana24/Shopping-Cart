@@ -1,5 +1,8 @@
+// JavaScript code for eCommerce functionalities
+
 import { items } from './itemsData.js';
 
+// Toggle navigation menu
 const menuBtn = document.getElementById("menu-line");
 const navLinks = document.getElementById("ul-links");
 const menuBtnIcon = menuBtn.querySelector("i");
@@ -10,17 +13,20 @@ menuBtn.addEventListener("click", () => {
   menuBtnIcon.setAttribute("class", isOpen ? "ri-close-line" : "ri-menu-line");
 });
 
+// Close menu on link click
 document.querySelectorAll(".nav-links li a").forEach((link) => {
   link.addEventListener("click", () => {
     if (window.innerWidth <= 768) {
       navLinks.classList.remove("open");
       menuBtnIcon.setAttribute("class", "ri-menu-line");
-    }
+    };
   });
 });
 
+// Update footer year automatically
 document.getElementById('footer-year').textContent = new Date().getFullYear();
 
+// Toggle additional bio information
 function toggleBio() {
   const extraBio = document.getElementById("extra-bio");
   const button = document.getElementById("show-more-btn");
@@ -34,6 +40,7 @@ function toggleBio() {
   };
 };
 
+// Toggle additional company information
 function toggleCompanyInfo() {
   const extraInfo = document.getElementById("extra-company-info");
   const button = document.getElementById("show-more-company-btn");
@@ -47,7 +54,7 @@ function toggleCompanyInfo() {
   };
 };
 
-
+// Flash Sales Countdown Timer
 function startFlashSalesTimer(endTime) {
   const timeLeftElement = document.getElementById("time-left");
 
@@ -59,19 +66,19 @@ function startFlashSalesTimer(endTime) {
       clearInterval(timerInterval);
       timeLeftElement.textContent = "Sale Ended!";
       return;
-    }
+    };
 
     const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
     const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-    timeLeftElement.textContent = `${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
-  }
+    timeLeftElement.innerText = `${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
+  };
 
   const timerInterval = setInterval(updateTimer, 1000);
   updateTimer(); 
-}
+};
 
 const flashSaleEndTime = new Date().getTime() + 15 * 24 * 60 * 60 * 1000; 
 startFlashSalesTimer(flashSaleEndTime);
@@ -105,6 +112,7 @@ const products = [
   },img: "Images/Dove Pampering Body Wash Shea Butter With Warm Vanilla 500ml.jpeg", quantity: 0 },
 ];
 
+// Display products dynamically
 function renderProducts(products) {
   const productsContainer = document.querySelector(".flash-products");
 
@@ -156,23 +164,18 @@ function renderProducts(products) {
     productCard.appendChild(details);
     productsContainer.appendChild(productCard);
   });
-}
+};
 
-renderProducts(products);
-
-
-/* ---------------------- Initializing Variables ---------------------- */
+/* ---------------------- Cart Management ---------------------- */
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 const modal = document.getElementById('checkout-modal');
 
-
-/* ----------------------- Utility Functions ----------------------- */
 // Save cart to local storage
 function saveToCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
 };
 
-// Update cart count
+// Update cart icon with item count
 function updateCart() {
   const cartElement = document.getElementById("cart-count");
   cartElement.textContent = cart.length;
@@ -187,7 +190,7 @@ function subTotal() {
   checkoutTotal.textContent = totalCost.toFixed(2);
 };
 
-/* ---------------------- Product Display Functions ---------------------- */
+
 // Display products dynamically
 
 function displayProducts(productList) {
@@ -242,7 +245,7 @@ function displayProducts(productList) {
     productCard.appendChild(details);
     productContainer.appendChild(productCard);
   });
-}
+};
 
 // Function to show the popup
 function showPopup(product) {
@@ -271,16 +274,11 @@ function showPopup(product) {
   modal.classList.remove("hidden");
   modal.classList.add("visible");
 
-
   const cartButton = document.getElementById("cart-button");
   cartButton.addEventListener("click", () => {
     addToCart(product.id);
-    location.reload();
-    modal.classList.remove("visible");
-    modal.classList.add("hidden");
     renderCart();
     updateCart();
-    
   });
 
   window.addEventListener("click", (event) => {
@@ -290,12 +288,9 @@ function showPopup(product) {
       location.reload();
     };
   });
- 
+
 };
 
-
-
-/* ---------------------- Cart Management Functions ---------------------- */
 // Add product to cart
 function addToCart(itemId) {
   
@@ -304,7 +299,7 @@ function addToCart(itemId) {
   if (!item) {
     console.error("Item not found:", itemId);
     return;
-  }
+  };
 
   
   const itemExists = cart.find((cartItem) => cartItem.id === itemId);
@@ -318,7 +313,9 @@ function addToCart(itemId) {
   };
 
   saveToCart();
-  updateCart(); 
+  updateCart();
+  renderCart();
+  subTotal();
   };
 
 // Render cart items
@@ -329,8 +326,9 @@ function renderCart() {
 
   if (cart.length === 0) {
     showToast("Your cart is empty!");
+    
     return;
-  }
+  };
 
   cart.forEach((product, index) => {
     const productDiv = document.createElement("div");
@@ -348,24 +346,31 @@ function renderCart() {
       </div>
     `;
 
-    productDiv.querySelector(".add-btn").addEventListener("click", () => updateQuantity(index, "add"));
-    productDiv.querySelector(".subtract-btn").addEventListener("click", () => updateQuantity(index, "subtract"));
+    productDiv.querySelector(".add-btn").addEventListener("click", () => {
+      updateQuantity(index, "add");
+
+    });
+
+    productDiv.querySelector(".subtract-btn").addEventListener("click", () => {
+      updateQuantity(index, "subtract");
+      updateOrderSummary();
+    });
+
     productDiv.querySelector(".delete-btn").addEventListener("click", () => {
       cart.splice(index, 1);
       updateCart();
       saveToCart();
       renderCart();
-    });
+    
+    });;
 
     cartContainer.appendChild(productDiv);
   });
 
   modal.classList.remove("hidden");
   modal.classList.add("visible");
-  subTotal();
-
+  subTotal();  
   
-  document.removeEventListener("click", clickToClose);
   document.addEventListener("click", clickToClose);
 };
 
@@ -377,7 +382,7 @@ function clickToClose(event) {
   if (!modalContent.contains(event.target) && !event.target.closest("#cart-btn")) {
     modal.classList.remove("visible");
     modal.classList.add("hidden");
-  }
+  };
 };
 
 
@@ -388,79 +393,45 @@ function updateQuantity(index, action) {
     product.quantity += 1;
   } else if (action === "subtract" && product.quantity > 1) {
     product.quantity -= 1;
-  }
+  };
   saveToCart();
   renderCart();
 };
 
-/* ---------------------- Checkout Functions ---------------------- */
-// Show order summary
-function orderSummary() {
-  const cartContainer = document.getElementById("cart-items-list"); 
 
-  cartContainer.innerHTML = "";
+/* ---------------------- Checkout Functions ---------------------- */
+
+
+// Show order summary
+function updateOrderSummary() {
   const totalItems = cart.reduce((sum, product) => sum + product.quantity, 0);
   const totalCost = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
+  const tax = (totalCost * 0.10).toFixed(2);
+  const grandTotal = (totalCost * 1.10).toFixed(2);
 
-  modal.innerHTML = `
-    <div class="order-summary" role="dialog" aria-labelledby="summary-title">
-      <button id="close-summary" class="close-btn" aria-label="Close order summary">
-        <i class="ri-close-line" aria-hidden="true"></i>
-      </button>
-      <h3 id="summary-title">Order Summary</h3>
-      <p>Total Items: ${totalItems}</p>
-      <p>Total Cost: GHC ${totalCost.toFixed(2)}</p>
-      <p>Tax (10%): GHC ${(totalCost * 0.10).toFixed(2)}</p>
-      <p><strong>Grand Total: GHC ${(totalCost * 1.10).toFixed(2)}</strong></p>
-      
-      <!-- Shipping Address Form -->
-      <div class="shipping-address">
-        <h3>Shipping Address</h3>
-        <label for="address-line1">Address Line 1:</label>
-        <input type="text" id="address-line1" name="address-line1" required placeholder="Enter your street address" />
+  // Save data to localStorage for use on the Order Summary page
+  localStorage.setItem('totalItems', totalItems);
+  localStorage.setItem('totalCost', totalCost.toFixed(2));
+  localStorage.setItem('tax', tax);
+  localStorage.setItem('grandTotal', grandTotal);
+};
 
-        <label for="address-line2">Address Line 2 (optional):</label>
-        <input type="text" id="address-line2" name="address-line2" placeholder="Apartment, suite, unit, etc." />
+// Show order summary
+function orderSummary() {
+  updateOrderSummary(); // Update before navigation
+  window.location.href = 'OrderSum.html';
+};
 
-        <label for="city">City:</label>
-        <input type="text" id="city" name="city" required placeholder="Enter your city" />
+// Display order summary data on OrderSum.html
+if (window.location.pathname.includes('OrderSum.html')) {
+  document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById("total-items").innerText = localStorage.getItem("totalItems") || 0;
+  document.getElementById("total-cost").textContent = localStorage.getItem("totalCost") || "0.00";
+  document.getElementById("tax").textContent = localStorage.getItem("tax") || "0.00";
+  document.getElementById("grand-total").textContent = localStorage.getItem("grandTotal") || "0.00";
 
-        <label for="postal-code">Postal Code:</label>
-        <input type="text" id="postal-code" name="postal-code" required placeholder="Enter your postal code" />
-      </div>
-
-      <!-- Payment Method Form -->
-      <div class="payment-method">
-        <h3>Payment Method</h3>
-        <label for="payment-method">Choose a payment method:</label>
-        <select id="payment-method" name="payment-method" required>
-          <option value="" disabled selected>Select payment method</option>
-          <option value="credit-card">Credit/Debit Card</option>
-          <option value="paypal">PayPal</option>
-          <option value="cash-on-delivery">Cash on Delivery</option>
-        </select>
-      </div>
-
-      <!-- Delivery Information -->
-      <div class="delivery-info">
-        <h3>Delivery Information</h3>
-        <label for="delivery-date">Preferred Delivery Date:</label>
-        <input type="date" id="delivery-date" name="delivery-date" required />
-
-        <label for="delivery-time">Preferred Delivery Time:</label>
-        <input type="time" id="delivery-time" name="delivery-time" required />
-      </div>
-
-      <!-- Confirm Checkout -->
-      <button id="confirm-checkout" class="checkout-btn" aria-label="Proceed to payment">Proceed to Payment</button>
-    </div>
-  `;
-
-  modal.classList.remove('hidden');
-  modal.classList.add('visible');
-
-
-  document.getElementById("confirm-checkout").addEventListener("click", () => {
+  document.getElementById("confirm-checkout").addEventListener("click", (event) => 
+    { event.preventDefault();
     const addressLine1 = document.getElementById("address-line1").value;
     const city = document.getElementById("city").value;
     const postalCode = document.getElementById("postal-code").value;
@@ -471,43 +442,37 @@ function orderSummary() {
     if (!addressLine1 || !city || !postalCode || !paymentMethod || !deliveryDate || !deliveryTime) {
       alert("Please fill in all the required fields.");
       return;
-    }
+    };
 
-    
-
-    // Reset the cart after successful checkout
+    // Clear the cart after successful checkout
+    localStorage.removeItem('cart');
     cart = [];
-    saveToCart();
-    updateCart();
-
-    // Hide the modal and reload the page
-    modal.classList.remove('visible');
-    modal.classList.add('hidden');
 
     alert(`Order placed successfully!\nShipping Address: ${addressLine1}, ${city}, ${postalCode}\nPayment Method: ${paymentMethod}\nDelivery: ${deliveryDate} at ${deliveryTime}`);
-    modal.classList.remove('visible');
-    modal.classList.add('hidden');
-    location.reload();
+    updateOrderSummary();
+    
   });
-
-    // Close modal when clicking outside
-    window.addEventListener("click", (event) => {
-      if (event.target === modal) {
-        modal.classList.remove('visible');
-        modal.classList.add('hidden');
-        location.reload();
-      };
-    });
-  
-  
+});
 };
 
 /* ---------------------- Event Listeners ---------------------- */
+ // Form Validation
+function validateForm() {
+  const email = document.getElementById("email").value;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex
+
+  if (!emailPattern.test(email)) {
+      alert("Please enter a valid email address.");
+      return false; // Prevent form submission
+  };
+  return true; // Allow form submission
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   displayProducts(items);
   renderProducts(products);
   updateCart();
+  subTotal();
 });
 
 document.getElementById("show-more-btn").addEventListener("click", toggleBio);
@@ -522,6 +487,14 @@ const flashProducts = document.querySelector(".flash-products");
 // Function to search within products
 function searchProducts() {
   const query = searchBar.value.toLowerCase().trim();
+
+  if (query === "") {
+    displayProducts(items);
+    renderProducts(products);
+    updateCart();
+    return;
+  };
+
   let found = false; 
 
   // Get all product items in both containers
@@ -532,7 +505,7 @@ function searchProducts() {
     const title = titleElement ? titleElement.textContent.toLowerCase() : "";
 
     if (title.includes(query)) {
-      product.style.display = "gride"; 
+      product.style.display = "grid"; 
       found = true;
     } else {
       product.style.display = "none";
@@ -551,7 +524,13 @@ searchBtn.addEventListener("click", searchProducts);
 searchBar.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
     searchProducts();
-  }
+  };
+});
+
+searchBar.addEventListener("input", function () {
+  if (searchBar.value.trim() === "") {
+    searchProducts();
+  };
 });
 
 

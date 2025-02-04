@@ -23,6 +23,7 @@ document.querySelectorAll(".nav-links li a").forEach((link) => {
   });
 });
 
+
 // Update footer year automatically
 document.getElementById('footer-year').textContent = new Date().getFullYear();
 

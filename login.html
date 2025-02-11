@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Hayate Cosmetics</title>
+    <link rel="icon" href="/Images/comlogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/Styles/styles.css">
+    <link rel="stylesheet" href="/Styles/style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+</head>
+<body>
+
+    <header>
+    <nav>
+        <div class="nav-header">
+            <div class="nav-logo">
+            <img src="/Images/NEW LOGO.png" alt="logo" class="logo">
+                <!--  <a href="#" class="logo">Pulse<span>bit</span></a> -->
+            </div>
+            <div class="nav-menu-btn" id="menu-line">
+                <i class="ri-menu-line" aria-label="menu-line"></i>
+            </div>
+        </div>
+            <ul class="nav-links" id="ul-links" aria-label="nav-links">
+                <li><a href="/index.html" aria-label="home">Home</a></li>
+                <li><a href="/index.html#about-company" aria-label="about">About</a>
+                </li>
+                <li>
+                    <a href="contact.html" class="btn">Contact Us</a>
+                </li>
+                <li>
+                <button id="cart-btn" aria-controls="checkout-modal" aria-expanded="false">
+                    <span><i class="ri-shopping-cart-2-line"></i></span> 
+                    Cart (<span id="cart-count" aria-live="polite">0</span>)
+                </button>
+                </li>
+            </ul>
+    </nav>
+    </header>
+
+    <div class="container1">
+    <div class="wrapper">
+        <div class="title"> <img src="/Images/comlogo.png" alt="logo" width="60px"></div>
+        <form action="#">
+            <div class="row">
+            <i class='bx bxs-user'></i>
+            <input type="text" placeholder="Email or Phone" required>
+        </div>
+        <div class="row">
+            <i class='bx bxs-lock-alt'></i>
+            <input type="password" placeholder="Password" required>
+        </div>
+        <div class="pass"><a href="#">Forgot password?</a></div>
+        <div class="row button">
+            <input type="submit" value="Login">
+        </div>
+        <div class="signup-link">Not a member? <a href="/signUp.html">Signup now</a></div>
+        </form>
+    </div>
+</div>
+
+    <!--Footer Section-->
+<footer>
+    <div class="footer-container">
+        <div class="footer-col">
+            <div class="footer-logo">
+            <img src="/Images/NEW LOGO.png" alt="logo" class="logo">
+            </div>
+            <ul class="footer-links">
+                <li>
+                    <a href="tel:+233551333780"><span></span><i class="ri-phone-line"></i>
+                        +233 551 333 780</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.google.com/maps/search/aamusted+(formerly+uew-kumasi)+sunyani+road+kumasi/@6.6976281,-1.6833419,17.96z/data=!5m1!1e1?entry=ttu&g_ep=EgoyMDI1MDEyOS4xIKXMDSoASAFQAw%3D%3D" target="_blank"><span></span><i class="ri-map-pin-line"></i>   AAMUSTED, Tanoso</span>
+                    </a>
+                </li>
+                <li><a href="mailto:info@hayatecosmetics.com"><i class="ri-mail-line">
+                </i> info@hayatecosmetics.com</a></li>
+            </ul>
+        </div>
+        <div class="footer-col2">
+            <h4>Menu</h4>
+            <ul class="header-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#about-company">About</a></li>
+            </ul>
+            <div class="social-share">
+                <a href="https://web.facebook.com/" target="_blank" title="Follow us on Facebook"><i class="ri-facebook-line"></i></a>
+                <a href="https://www.x.com/" target="_blank" title="Follow us on X"><i class="ri-twitter-x-line"></i></a>
+                <a href="https://www.youtube.com/watch?v=DjY-01S_dgs" target="_blank" title="Subscribe to our channel"><i class="ri-youtube-line"></i></a>
+            </div> 
+        </div>
+        <div class="footer-col6" id="column">
+            <h2>Join our newsletter</h2>
+            <p>Stay turned for new product updates</p>
+            <form action="/">
+                <input type="text" placeholder="Enter your email">
+                <button class="btn" title="Subscribe to our newsletter">Subscribe</button>
+            </form>
+        </div> 
+        
+</footer>
+<div class="footer-bar">
+    <p><i class="ri-copyright-line"></i><span id="footer-year"></span> Hayate Cosmetics. All rights reserved.</p>
+    <p>Develop by Simdi Technologies</p>
+</div>
+
+<script type="module" src="/JS/main.js"></script>
+</body>
+</html>

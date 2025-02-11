@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary - Hayate Cosmetics</title>
+    <link rel="icon" href="/Images/comlogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/Styles/styles.css">
+    <link rel="stylesheet" href="/Styles/style.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+</head>
+<body>
+
+    <header>
+    <nav>
+        <div class="nav-header">
+            <div class="nav-logo">
+            <img src="/Images/NEW LOGO.png" alt="logo" class="logo">
+            </div>
+            <div class="nav-menu-btn" id="menu-line">
+                <i class="ri-menu-line" aria-label="menu-line"></i>
+            </div>
+        </div>
+            <ul class="nav-links" id="ul-links" aria-label="nav-links">
+                <li><a href="/index.html" aria-label="home">Home</a></li>
+                <li><a href="/index.html#about-company" aria-label="about">About</a>
+                </li>
+                <li>
+                    <a href="contact.html" class="btn">Contact Us</a>
+                </li>
+                <li>
+                <button id="cart-btn" aria-controls="checkout-modal" aria-expanded="false">
+                    <span><i class="ri-shopping-cart-2-line"></i></span> 
+                    Cart (<span id="cart-count" aria-live="polite">0</span>)
+                </button>
+                </li>
+            </ul>
+    </nav>
+    </header>
+
+        <!-- Order Summary Modal -->
+    <div class="order-summary" role="dialog" aria-labelledby="summary-title">
+        <h3 id="summary-title">Order Summary</h3>
+        <form id="checkout-form">
+        <p>Total Items: <span id="total-items">0</span></p>
+        <p>Total Cost: GHC <span id="total-cost">0.00</span></p>
+        <p>Tax (10%): GHC <span id="tax">0.00</span></p>
+        <p><strong>Grand Total: GHC <span id="grand-total">0.00</span></strong></p>
+    
+        <!-- Shipping Address Form -->
+        <div class="shipping-address">
+        <h3>Shipping Address</h3>
+        <label for="address-line1">Address Line 1:</label>
+        <input type="text" id="address-line1" name="address-line1" required placeholder="Enter your street address" />
+
+        <label for="address-line2">Address Line 2 (optional):</label>
+        <input type="text" id="address-line2" name="address-line2" placeholder="Apartment, suite, unit, etc." />
+
+        <label for="region">Choose Your Region:</label>
+        <select name="region" id="region" required>
+        <option value="" disabled selected>Choose Your Region</option>
+        <option value="Ahafo">Ahafo</option>
+        <option value="Ashanti">Ashanti</option>
+        <option value="Bono-East">Bono East</option>
+        <option value="Bono">Bono</option>
+        <option value="Central">Central</option>
+        <option value="Eastern">Eastern</option>
+        <option value="Greater-Accra">Greater-Accra</option>
+        <option value="North-East">North-East</option>
+        <option value="Northern">Northern</option>
+        <option value="Oti">Oti</option>
+        <option value="Savannah">Savannah</option>
+        <option value="Upper-East">Upper-East</option>
+        <option value="Upper-West">Upper-West</option>
+        <option value="Volta">Volta</option>
+        <option value="Western-North">Western-North</option>
+        <option value="Western">Western</option>
+        </select>
+        
+
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required placeholder="Enter your city" />
+        </div>
+
+        <!-- Payment Method Form -->
+        <div class="payment-method">
+        <h3>Payment Method</h3>
+        <label for="payment-method">Choose a payment method:</label>
+        <select id="payment-method" name="payment-method" required>
+            <option value="" disabled selected>Select payment method</option>
+            <option value="mobile-money">Mobile Money</option>
+            <option value="credit-card">Credit/Debit Card</option>
+            <option value="paypal">PayPal</option>
+            <option value="cash-on-delivery">Cash on Delivery</option>
+        </select>
+        </div>
+
+        <!-- Delivery Information -->
+        <div class="delivery-info">
+        <h3>Delivery Information</h3>
+        <label for="delivery-date">Preferred Delivery Date:</label>
+        <input type="date" id="delivery-date" name="delivery-date" required />
+        <!-- Confirm Checkout -->
+        <button id="confirm-checkout" class="checkout-btn" aria-label="Proceed to payment">Proceed to Payment</button>
+    </form>
+    </div>
+    
+    
+    <!--Footer Section-->
+<footer>
+    <div class="footer-container">
+        <div class="footer-col">
+            <div class="footer-logo">
+            <img src="/Images/NEW LOGO.png" alt="logo" class="logo">
+            </div>
+            <ul class="footer-links">
+                <li>
+                    <a href="tel:+233551333780"><span></span><i class="ri-phone-line"></i>
+                        +233 551 333 780</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.google.com/maps/search/aamusted+(formerly+uew-kumasi)+sunyani+road+kumasi/@6.6976281,-1.6833419,17.96z/data=!5m1!1e1?entry=ttu&g_ep=EgoyMDI1MDEyOS4xIKXMDSoASAFQAw%3D%3D" target="_blank"><span></span><i class="ri-map-pin-line"></i>   AAMUSTED, Tanoso</span>
+                    </a>
+                </li>
+                <li><a href="mailto:info@hayatecosmetics.com"><i class="ri-mail-line">
+                </i> info@hayatecosmetics.com</a></li>
+            </ul>
+        </div>
+        <div class="footer-col2">
+            <h4>Menu</h4>
+            <ul class="header-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#about-company">About</a></li>
+            </ul>
+            <div class="social-share">
+                <a href="https://web.facebook.com/" target="_blank" title="Follow us on Facebook"><i class="ri-facebook-line"></i></a>
+                <a href="https://www.x.com/" target="_blank" title="Follow us on X"><i class="ri-twitter-x-line"></i></a>
+                <a href="https://www.youtube.com/watch?v=DjY-01S_dgs" target="_blank" title="Subscribe to our channel"><i class="ri-youtube-line"></i></a>
+            </div> 
+        </div>
+        <div class="footer-col6" id="column">
+            <h2>Join our newsletter</h2>
+            <p>Stay turned for new product updates</p>
+            <form action="/">
+                <input type="text" placeholder="Enter your email">
+                <button class="btn" title="Subscribe to our newsletter">Subscribe</button>
+            </form>
+        </div> 
+        
+</footer>
+<div class="footer-bar">
+    <p><i class="ri-copyright-line"></i><span id="footer-year"></span> Hayate Cosmetics. All rights reserved.</p>
+    <p>Develop by Simdi Technologies</p>
+</div>
+
+
+<script src="/JS/home.js"></script>
+</body>
+</html>

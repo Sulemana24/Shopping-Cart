@@ -1,25 +1,25 @@
 export const items = [
   {
     id: 1,
-    title: "Nivea Nourishing Body Lotion",
+    title: "Flotata Perfume",
     description: {
-      short:"Pamper your skin with the Nivea Nourishing Body Lotion, enriched with almond oil to provide....",
-      long: "Pamper your skin with the Nivea Nourishing Body Lotion, enriched with almond oil to provide deep nourishment and long-lasting moisture. The fast-absorbing formula is suitable for all skin types and leaves your skin feeling soft, smooth, and hydrated.",
+      short:"Flotata Perfume is a luxurious fragrance that captures...",
+      long: "Flotata Perfume is a masterpiece crafted for those who appreciate refined scents. This fragrance opens with a burst of fresh citrus notes.",
     },
     price: 45.99,
-    img: "/Images/Nivea Extra Whitening Body Lotion (SPF 15) Review.jpeg",
+    img: "Images/18 Perfumes incrivelmente baratos e bons para você_ (Atualizado 2025).jpeg",
     quantity: 0,
   },
 
   {
     id: 2,
-    title: "Nivea Aloe Hydration Body Lotion",
+    title: "Dove Advance Care",
     description: {
-      short: "Refresh and hydrate your skin with the Nivea Aloe Hydration Body Lotion....",
-      long: "Refresh and hydrate your skin with the Nivea Aloe Hydration Body Lotion, enriched with the goodness of natural aloe vera. This lightweight, non-greasy formula absorbs quickly, providing 48 hours of deep moisture to leave your skin feeling soft, smooth, and rejuvenated. Ideal for all skin types, it soothes dryness and restores your skin's natural glow, keeping it refreshed and healthy all day long",
+      short: "Dove Advanced Care provides 48-hour protection and...",
+      long: "Dove Advanced Care is more than just a deodorant—it’s a luxurious blend of advanced skincare and reliable protection. Enriched with Dove’s signature ¼ moisturizing cream and soothing ingredients.",
     },
     price: 48.97,
-    img: "/Images/niv.jpeg",
+    img: "Images/Dove Advanced Care Antiperspirant Deodorant Spray Beauty Finish 3 Count To help skin barrier repair after shaving by boosting skin's ceramide levels 72-hour for Soft Underarms 3_8 oz.jpeg",
     quantity: 0,
   },
 
@@ -27,8 +27,8 @@ export const items = [
     id: 3,
     title: "Nivea Men Maximum Body Lotion",
     description: {
-      short:  "Indulge your skin with the rich care of Nivea Cocoa Butter Body Lotion....",
-      long: "Indulge your skin with the rich care of Nivea Cocoa Butter Body Lotion, infused with the nourishing power of cocoa butter and Vitamin E. This creamy, fast-absorbing formula provides intense hydration, leaving your skin irresistibly smooth and glowing. Perfect for dry to very dry skin, it deeply moisturizes and enhances skin elasticity, while the warm, cocoa scent provides a luxurious experience every time you apply it",
+      short:  "Indulge your skin with the rich care of Nivea Cocoa....",
+      long: "Indulge your skin with the rich care of Nivea Cocoa Butter Body Lotion, infused with the nourishing power of cocoa butter and Vitamin E.",
     },
     price: 40.39,
     img: "/Images/niv1.jpeg",
@@ -39,8 +39,8 @@ export const items = [
     id: 4,
     title: "Nivea Even & Radiant Body Lotion",
     description: {
-      short: "Achieve an even-toned, radiant complexion with the Nivea Even & Radiant Body Lotion....",
-      long: "Achieve an even-toned, radiant complexion with the Nivea Even & Radiant Body Lotion, specially formulated with deep moisture serum and natural extracts. This lotion works to reduce the appearance of dark spots and uneven skin tone, while providing long-lasting hydration. Enriched with Vitamin C and sunscreen protection, it helps to brighten your skin and shield it from harmful UV rays, leaving it smooth, radiant, and beautifully nourished",
+      short: "Achieve an even-toned, radiant complexion with the...",
+      long: "Achieve an even-toned, radiant complexion with the Nivea Even & Radiant Body Lotion, specially formulated with deep moisture serum and natural extracts.",
     },
     price: 49.99,
     img: "/Images/NIVEA Radiant Beauty.jpeg",
@@ -49,74 +49,61 @@ export const items = [
 
   {
     id: 5,
-    title: "Nivea Cocoa Butter Body Lotion",
+    title: "Fiama Blackcurrant",
     description: {
-      short: "Specifically formulated for men, the Nivea Men Maximum Hydration Body Lotion provides long-lasting moisture and....",
-      long: "Specifically formulated for men, the Nivea Men Maximum Hydration Body Lotion provides long-lasting moisture and intensive care for dry skin. Enriched with Aloe Vera and Hydra-IQ technology, this fast-absorbing lotion locks in hydration for up to 24 hours, leaving your skin feeling refreshed, smooth, and revitalized. Designed for daily use, it’s perfect for tackling dryness without any greasy residue, keeping your skin healthy and ready for the day",
+      short: "Fiama Blackcurrant is a refreshing body wash infused...",
+      long: "Fiama Blackcurrant Body Wash brings a burst of freshness to your daily skincare routine. Enriched with the natural goodness of blackcurrant and bearberry extracts.",
     },
     price: 58.99,
-    img: "/Images/NIVEA Body Lotions & Creams.jpeg",
+    img: "Images/Fiama Blackcurrant Bearberry Conditioners Radiant.jpeg",
     quantity: 0,
   },
 
   {
     id: 6,
-    title: "Nivea Cocoa Butter Body Lotion",
+    title: "Vaseline Healthy Hand",
     description: {
-      short: "Specifically formulated for men, the Nivea Men Maximum Hydration Body Lotion provides long-lasting moisture and....",
-      long: "Specifically formulated for men, the Nivea Men Maximum Hydration Body Lotion provides long-lasting moisture and intensive care for dry skin. Enriched with Aloe Vera and Hydra-IQ technology, this fast-absorbing lotion locks in hydration for up to 24 hours, leaving your skin feeling refreshed, smooth, and revitalized. Designed for daily use, it’s perfect for tackling dryness without any greasy residue, keeping your skin healthy and ready for the day",
+      short: "Vaseline Healthy Hands is a nourishing hand cream...",
+      long: "Vaseline Healthy Hands Hand Cream is formulated to provide intense hydration and care for dry, rough hands. Infused with a blend of Vaseline’s signature jelly and other nourishing ingredients.",
     },
     price: 59.99,
-    img: "/Images/Nivea Q10 Firming + Bronze Effect Body Lotion 400 ML.jpeg",
+    img: "Images/Vaseline Healthy Hand & Nail Conditioning Hand Lotion 200ml.jpeg",
     quantity: 0,
   },
 
   {
     id: 7,
-    title: "Nivea Nourishing Body Lotion",
+    title: "YSL Black Opium",
     description: {
-      short:"Pamper your skin with the Nivea Nourishing Body Lotion, enriched with almond oil to provide....",
-      long: "Pamper your skin with the Nivea Nourishing Body Lotion, enriched with almond oil to provide deep nourishment and long-lasting moisture. The fast-absorbing formula is suitable for all skin types and leaves your skin feeling soft, smooth, and hydrated.",
+      short:"YSL Black Opium is a bold, seductive fragrance with...",
+      long: "YSL Black Opium is a captivating and energizing fragrance that evokes a sense of mystery and glamour. The scent opens with the rich and stimulating notes of coffee.",
     },
     price: 70.99,
-    img: "/Images/Nivea Extra Whitening Body Lotion (SPF 15) Review.jpeg",
+    img: "Images/This dupe for YSL Black Opium is less than $20 a bottle.jpeg",
     quantity: 0,
   },
 
   {
     id: 8,
-    title: "Nivea Aloe Hydration Body Lotion",
+    title: "Vitamin C Serum",
     description: {
-      short: "Refresh and hydrate your skin with the Nivea Aloe Hydration Body Lotion....",
-      long: "Refresh and hydrate your skin with the Nivea Aloe Hydration Body Lotion, enriched with the goodness of natural aloe vera. This lightweight, non-greasy formula absorbs quickly, providing 48 hours of deep moisture to leave your skin feeling soft, smooth, and rejuvenated. Ideal for all skin types, it soothes dryness and restores your skin's natural glow, keeping it refreshed and healthy all day long",
+      short: "Vitamin C Serum is a powerful skincare treatment that...",
+      long: "Vitamin C Serum is a potent, antioxidant-rich formula designed to rejuvenate your skin and combat the signs of aging. Infused with pure vitamin C, it helps to brighten the complexion.",
     },
     price: 45.55,
-    img: "/Images/niv.jpeg",
+    img: "Images/These Skincare Products Are the Next Best Thing To Injectables, According To a Professional.jpeg",
     quantity: 0,
   },
 
   {
     id: 9,
-    title: "Nivea Men Maximum Body Lotion",
+    title: "NIVEA Radiant Beauty Even Glow",
     description: {
-      short:  "Indulge your skin with the rich care of Nivea Cocoa Butter Body Lotion....",
-      long: "Indulge your skin with the rich care of Nivea Cocoa Butter Body Lotion, infused with the nourishing power of cocoa butter and Vitamin E. This creamy, fast-absorbing formula provides intense hydration, leaving your skin irresistibly smooth and glowing. Perfect for dry to very dry skin, it deeply moisturizes and enhances skin elasticity, while the warm, cocoa scent provides a luxurious experience every time you apply it",
+      short:  "NIVEA Radiant Beauty Even Glow Lotion nourishes...",
+      long: "NIVEA Radiant Beauty Even Glow Lotion is expertly formulated to provide intense moisture while enhancing your skin's natural radiance. Infused with a unique blend of ingredients.",
     },
     price: 40.56,
-    img: "/Images/niv1.jpeg",
-    quantity: 0,
-  },
-  
-  {
-    id: 10,
-    title: "Nivea Even & Radiant Body Lotion",
-    description: {
-      short: "Achieve an even-toned, radiant complexion with the Nivea Even & Radiant Body Lotion....",
-      long: "Achieve an even-toned, radiant complexion with the Nivea Even & Radiant Body Lotion....",
-      long: "Achieve an even-toned, radiant complexion with the Nivea Even & Radiant Body Lotion, specially formulated with deep moisture serum and natural extracts. This lotion works to reduce the appearance of dark spots and uneven skin tone, while providing long-lasting hydration. Enriched with Vitamin C and sunscreen protection, it helps to brighten your skin and shield it from harmful UV rays, leaving it smooth, radiant, and beautifully nourished",
-    },
-    price: 39.99,
-    img: "/Images/NIVEA Radiant Beauty.jpeg",
+    img: "Images/NIVEA Radiant Beauty Even Glow.jpeg",
     quantity: 0,
   },
 
